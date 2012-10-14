@@ -43,17 +43,17 @@
 
 	<div data-role="page" id="login" data-title="Login">
 		<div data-role="header" data-position="fixed" class="ui-header" role="banner">
-			<h1 class="ui-title" role="heading">Login</h1>
-			<a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">
+			<h1 class="ui-title" role="heading">Iniciar Sessão</h1>
+			<a href="#home" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
-					<span class="ui-btn-text">Home</span>
-					<span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span>
+					<span class="ui-btn-text">Back</span>
+					<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
 				</span>
 			</a>
-			<a href="#search" data-icon="search" data-iconpos="notext" data-rel="dialog" data-transition="fade" class="ui-btn-right ui-btn ui-btn-up-f ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Search">
+			<a href="#search" data-role="button" data-icon="search" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
 					<span class="ui-btn-text">Search</span>
-					<span class="ui-icon ui-icon-search ui-icon-shadow">&nbsp;</span>
+					<span class="ui-icon ui-icon-search">&nbsp;</span>
 				</span>
 			</a>
 		</div>
@@ -66,7 +66,7 @@
 				<p>
 					<input type="password" name="password" placeholder="Password" />
 				</p>
-				<a href="#home" data-role="button" data-transition="slide" data-direction="reverse" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+				<a href="#home" data-role="button" data-transition="slide" data-direction="reverse" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 					<span class="ui-btn-inner ui-btn-corner-all">
 						<span class="ui-btn-text">Entrar</span>
 					</span>
@@ -75,11 +75,65 @@
 		</div>
 
 		<div data-role="footer" data-position="fixed">
-			<div class="ui-collapsible-content ui-body-d ui-collapsible-content-collapsed" aria-hidden="true">
-				<div class="ui-btn-inner ui-li">
-					<span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span>
-				</div>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="#home" data-role="button" data-icon="home" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-btn-icon-left ui-btn-up-a">
+					<span class="ui-btn-inner ui-corner-left">
+						<span class="ui-btn-text">Home</span>
+						<span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span>
+					</span>
+				</a>
+				<a href="#home" data-role="button" data-icon="star" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-btn-icon-left ui-btn-up-a">
+					<span class="ui-btn-inner ui-corner-left">
+						<span class="ui-btn-text">Favorites</span>
+						<span class="ui-icon ui-icon-star ui-icon-shadow">&nbsp;</span>
+					</span>
+				</a>
+				<a href="#home" data-role="button" data-icon="gear" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-btn-icon-left ui-btn-up-a">
+					<span class="ui-btn-inner ui-corner-left">
+						<span class="ui-btn-text">Settings</span>
+						<span class="ui-icon ui-icon-gear ui-icon-shadow">&nbsp;</span>
+					</span>
+				</a>
 			</div>
+		</div>
+	</div>
+	
+	<!-- REGISTER PAGE -->
+	<div data-role="page" id="register" data-title="Register">
+		<div data-role="header" data-position="fixed">
+			<h5>Registo</h5>
+			<a href="#home" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+				<span class="ui-btn-inner ui-btn-corner-all">
+					<span class="ui-btn-text">Back</span>
+					<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
+				</span>
+			</a>
+		</div>
+
+		<div data-role="content">
+			<form name="register">
+				<p>
+					<input type="text" name="name" placeholder="Name" />
+				</p>
+				<p>
+					<input type="password" name="password" placeholder="Password" />
+				</p>
+				<p>
+					<input type="password" name="password_confirmation" placeholder="Confirm Password" />
+				</p>
+				<p>
+					<input type="text" name="telephone" placeholder="Telephone" />
+				</p>
+				<a href="#" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
+					<span class="ui-btn-inner ui-btn-corner-all">
+						<span class="ui-btn-text">Registar</span>
+					</span>
+				</a>
+			</form>
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<h4>© 2012 À la carte</h4>
 		</div>
 	</div>
 </body>
