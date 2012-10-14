@@ -78,7 +78,7 @@
 			$('#login_button').click(function(){				
 				$.ajax({
 					type : 'POST',
-					dataType : 'json',
+					dataType : 'jsonp',
 					url : 'https://rails-alacarte-server.herokuapp.com/users/sign_in',
 					data : { user : { email : $('input#email').val(), password : $('input#password').val() } }
 					}).success(function jsSuccess(data, textStatus, jqXHR){
@@ -94,7 +94,6 @@
 						alert(errorThrown);
 					});
 			});
-			
 		
 		</script>
 
