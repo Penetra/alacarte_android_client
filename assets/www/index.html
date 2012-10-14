@@ -39,18 +39,18 @@
 		<div data-role="footer" data-position="fixed">
 			<h4>© 2012 À la carte</h4>
 		</div>
-	</div>
-
+	</div>	
+	
 	<div data-role="page" id="login" data-title="Login">
 		<div data-role="header" data-position="fixed" class="ui-header" role="banner">
 			<h1 class="ui-title" role="heading">Iniciar Sessão</h1>
-			<a href="#home" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+			<a href="#home" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
 					<span class="ui-btn-text">Back</span>
 					<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
 				</span>
 			</a>
-			<a href="#search" data-role="button" data-icon="search" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+			<a href="#search" data-role="button" data-icon="search" data-transition="slide" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
 					<span class="ui-btn-text">Search</span>
 					<span class="ui-icon ui-icon-search">&nbsp;</span>
@@ -59,37 +59,61 @@
 		</div>
 
 		<div data-role="content">
-			<form>
+			<form id="login_form">
 				<p>
-					<input type="text" name="username" placeholder="Username" />
+					<input type="text" id="email" name="email" placeholder="Email" />
 				</p>
 				<p>
-					<input type="password" name="password" placeholder="Password" />
+					<input type="password" id="password" name="password" placeholder="Password" />
 				</p>
-				<a href="#home" data-role="button" data-transition="slide" data-direction="reverse" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
+				<a href="#" id="login_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 					<span class="ui-btn-inner ui-btn-corner-all">
 						<span class="ui-btn-text">Entrar</span>
 					</span>
 				</a>
 			</form>
 		</div>
+		
+		<script type="text/javascript">
+			$('#login_button').click(function(){				
+				$.ajax({
+					type : 'POST',
+					dataType : 'json',
+					url : 'https://rails-alacarte-server.herokuapp.com/users/sign_in',
+					data : { user : { email : $('input#email').val(), password : $('input#password').val() } }
+					}).success(function jsSuccess(data, textStatus, jqXHR){
+						alert(data);
+						alert("bbb");
+					console.log(data);
+					console.log(textStatus);
+					console.log(jqXHR);
+					}).error(function jsError(jqXHR, textStatus, errorThrown){
+						alert("aaa");
+						alert(jqXHR);
+						alert(textStatus);
+						alert(errorThrown);
+					});
+			});
+			
+		
+		</script>
 
 		<div data-role="footer" data-position="fixed">
 			<div data-role="controlgroup" data-type="horizontal">
-				<a href="#home" data-role="button" data-icon="home" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-btn-icon-left ui-btn-up-a">
-					<span class="ui-btn-inner ui-corner-left">
+				<a href="#home" data-role="button" data-icon="home" data-transition="slide" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-btn-icon-left ui-btn-up-a">
+					<span class="ui-btn-inner">
 						<span class="ui-btn-text">Home</span>
 						<span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span>
 					</span>
 				</a>
 				<a href="#home" data-role="button" data-icon="star" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-btn-icon-left ui-btn-up-a">
-					<span class="ui-btn-inner ui-corner-left">
+					<span class="ui-btn-inner">
 						<span class="ui-btn-text">Favorites</span>
 						<span class="ui-icon ui-icon-star ui-icon-shadow">&nbsp;</span>
 					</span>
 				</a>
 				<a href="#home" data-role="button" data-icon="gear" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-btn-icon-left ui-btn-up-a">
-					<span class="ui-btn-inner ui-corner-left">
+					<span class="ui-btn-inner">
 						<span class="ui-btn-text">Settings</span>
 						<span class="ui-icon ui-icon-gear ui-icon-shadow">&nbsp;</span>
 					</span>
@@ -102,18 +126,23 @@
 	<div data-role="page" id="register" data-title="Register">
 		<div data-role="header" data-position="fixed">
 			<h5>Registo</h5>
-			<a href="#home" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+			<a href="#home" data-direction="reverse" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
 					<span class="ui-btn-text">Back</span>
 					<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
 				</span>
 			</a>
-		</div>
-
+		</div>		
 		<div data-role="content">
-			<form name="register">
+			<form id="register_form" name="register">
 				<p>
 					<input type="text" name="name" placeholder="Name" />
+				</p>
+				<p>
+					<input type="text" name="email" placeholder="Email" />
+				</p>
+				<p>
+					<input type="text" name="telephone" placeholder="Telephone" />
 				</p>
 				<p>
 					<input type="password" name="password" placeholder="Password" />
@@ -121,10 +150,7 @@
 				<p>
 					<input type="password" name="password_confirmation" placeholder="Confirm Password" />
 				</p>
-				<p>
-					<input type="text" name="telephone" placeholder="Telephone" />
-				</p>
-				<a href="#" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
+				<a href="#" id="register_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 					<span class="ui-btn-inner ui-btn-corner-all">
 						<span class="ui-btn-text">Registar</span>
 					</span>
