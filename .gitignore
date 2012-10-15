@@ -1,4 +1,5 @@
 /bin
+.project
 *.class
 
 # Package Files #
