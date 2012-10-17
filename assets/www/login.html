@@ -7,14 +7,14 @@
 	<script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/footer.js"></script>
+	<!-- <script type="text/javascript" charset="utf-8" src="js/footer.js"></script> -->
 	<link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
 
 </head>
 <body>
 
 <div data-role="page" data-title="Login">
-	<div data-role="header" data-position="fixed" class="ui-header" role="banner">
+	<div data-role="header" class="ui-header" role="banner">
 		<h1 class="ui-title" role="heading">Iniciar Sess&atildeo</h1>
 		<a href="index.html" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 			<span class="ui-btn-inner ui-btn-corner-all">
@@ -46,7 +46,7 @@
 		</form>
 	</div>
 	
-	<div data-role="footer" data-position="fixed"></div>
+	<div data-role="footer"></div>
 	
 	<script type="text/javascript">
 		$('#login_button').click(function(){		
@@ -56,9 +56,10 @@
 				url : 'https://rails-alacarte-server.herokuapp.com/users/sign_in.json',
 				data : { user : { email : "bob@mail.com", password : "bob1234" } }
 			}).success(function jsSuccess(data, textStatus, jqXHR){
-				console.log(data.auth_token)
+				console.log(data.auth_token);
+				$.mobile.changePage( "restaurant_list.html", { transition: "slideUp"} );
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
-				alert("asd");
+				
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);
