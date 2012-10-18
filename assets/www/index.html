@@ -38,6 +38,13 @@
 	</div>
 	
 	<div data-role="footer" data-position="fixed"></div>
+	
+	<script type="text/javascript">
+		$('[data-role=page]').live('pageshow', function() {
+			console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+			console.log(localStorage.getItem('auth_token'));
+		});
+	</script>
 </div>
 
 </body>

@@ -49,16 +49,19 @@
 	<div data-role="footer" data-position="fixed"></div>
 	
 	<script type="text/javascript">
-		$('#login_button').click(function(){		
+		$('#login_button').click(function(){
+			$.mobile.showPageLoadingMsg();
 			$.ajax({
 				type : 'POST',
 				dataType : 'json',
 				url : 'https://rails-alacarte-server.herokuapp.com/users/sign_in.json',
 				data : { user : { email : "bob@mail.com", password : "bob1234" } }
 			}).success(function jsSuccess(data, textStatus, jqXHR){
+				$.mobile.hidePageLoadingMsg();
+				localStorage.setItem('auth_token', data.auth_token);
 				console.log(data.auth_token)
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
-				alert("asd");
+				$.mobile.hidePageLoadingMsg();
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);
