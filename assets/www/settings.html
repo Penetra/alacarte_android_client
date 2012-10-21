@@ -12,23 +12,13 @@
 
 <div data-role="page" id="welcome">
 	<div data-role="header">
-		<h1>Bem-vindo</h1>
+		<h1>Defini&#231;&#245;es</h1>
 	</div>
 
 	<div data-role="content">
-		<a href="login.html" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+		<a href="#" id="logout_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
 			<span class="ui-btn-inner ui-btn-corner-all">
-				<span class="ui-btn-text">Iniciar Sess&atildeo</span>
-			</span>
-		</a>
-		<a href="registration.html" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
-			<span class="ui-btn-inner ui-btn-corner-all">
-				<span class="ui-btn-text">Registo</span>
-			</span>
-		</a>
-		<a href="restaurant_list.html" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
-			<span class="ui-btn-inner ui-btn-corner-all">
-				<span class="ui-btn-text">Restaurantes</span>
+				<span class="ui-btn-text">Terminar Sess&atildeo</span>
 			</span>
 		</a>
 	</div>
@@ -42,6 +32,13 @@
 			</ul>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		$('#logout_button').click(function(){
+			localStorage.removeItem('auth_token');
+			$.mobile.changePage('welcome.html', 'slideUp');
+		});
+	</script>
 </div>
 
 </body>
