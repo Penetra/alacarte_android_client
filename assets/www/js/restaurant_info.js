@@ -7,7 +7,7 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 		url : 'https://rails-alacarte-server.herokuapp.com/restaurants/' + id + '.json'
 	}).success(function jsSuccess(data, textStatus, jqXHR){
 		console.log("Successfully restaurant with id " + id);
-		writeRestaurant(data);
+		writeRestaurant(data, id);
 		console.log(textStatus);
 		console.log(jqXHR);
 	}).error(function jsError(jqXHR, textStatus, errorThrown){
@@ -22,9 +22,9 @@ function getURLParameter(name) {
     return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 }
 
-function writeRestaurant(data){
+function writeRestaurant(data, id){
 	var name = data['name'];
-	$("[data-role=header]").html("<h5>" + name + "</h5>");
+	$("[data-role=header] h1").html(name);
 	
 	var img = data['image'];
 	
@@ -44,13 +44,20 @@ function writeRestaurant(data){
 		address = "No address available";
 	}
 	
-	var content = '<div class="restaurant_info_img"><img src="' + img + '" class="ui-li-image"/></div>' + '<div class="restaurant_info_details"><p>' + desc + '</p><p>' + address + '</p></div>';
+	var content = '<div class="restaurant_info_img"><img src="' + img + '" class="ui-li-image"/></div>' + '<div class="restaurant_info_details"><p>' + desc + '</p></div>';
 	
 	var coordinates = data['coordinates'];
 	
+	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="meal_list.html?res_id='+id+'" data-role="button" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Refei&#231;&otilde;es</a><a href="restaurant_localization.html?coords='+coordinates+'" data-role="button" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Localiza&#231;&atilde;o</a></div></div>';
+	
+	/* Padding 5% on each side*/
+	var maxWidth = window.innerWidth * 0.9;
+	
 	if(coordinates != null){
-		content = content + '<div class="restaurant_info_map"><img class="ui-li-map" src="https://maps.googleapis.com/maps/api/staticmap?center='+coordinates+'&amp;zoom=14&amp;size=100x100&amp;markers='+coordinates+'&amp;sensor=false"/></div>';
+		content = content + '<div class="restaurant_info_map"><img class="ui-li-map" src="https://maps.googleapis.com/maps/api/staticmap?center='+coordinates+'&amp;zoom=14&amp;size='+maxWidth+"x"+maxWidth+'&amp;markers='+coordinates+'&amp;sensor=false"/></div>';
 	}
+	
+	content += '<div class="restaurant_info_details"><p>' + address + '</p></div>'
 	
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);

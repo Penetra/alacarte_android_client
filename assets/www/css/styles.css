@@ -5,48 +5,40 @@
 	background: transparent;
 }
 .ui-li-image-thumb {
-	position:absolute;
-	left:2%;
-	max-height:80px;
-	max-width:80px;
-}
-.ui-li-image{
-	position:absolute;
-	top:10%;
-	max-height:150px;
-	max-width:150px;
-}
-div.restaurant_info_img {
 	position: absolute;
-	padding-top: 5%;
-	width: 100%;
-	height: 30%;
-	margin-left: auto;
-	margin-right: auto;
-}
-div.restaurant_info_details {
-	position: absolute;
-	padding-top: 35%;
 	left: 2%;
-	width: 48%;
-	height: 20%;
+	max-height: 80px;
+	max-width: 80px;
 }
-div.restaurant_info_map {
-	position: absolute;
-	padding-top:35%;
-	left: 52%;
-	height: 20%;
-	width: 48%;
+.ui-li-image {
+	display: inline-block;
+	max-height: 250px;
+}
+.p-ui-title {
+	min-height: 1.1em;
+	text-align: center;
+	font-size: 13px;
+	display: block;
+	margin: .6em 30% .8em;
+	padding: 0;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	outline: 0!important
+}
+.restaurant_info_img {
+	padding-top: 5%;
+	text-align: center;
+}
+.restaurant_info_details {
+	padding-top: 10px;
+	font-size:12px;
+}
+.restaurant_info_map {
+	padding-top: 10px;
 }
 .ui-li-map {
-	position:absolute;
-	top:10%;
-	max-width:150px;
-	max-height:150px;
 }
-div.restaurant_info_meals {
-	position: absolute;
-	top:40%;
-	padding-top:5%;
-	width:100%;
+.restaurant_info_meals {
+	
 }
