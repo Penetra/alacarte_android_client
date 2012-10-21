@@ -1,6 +1,5 @@
 $('[data-role=page]').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
-	
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
@@ -38,9 +37,11 @@ function writeRestaurants(data){
 			desc = "No description available";
 		}
 		
+		var id = rest['id'];
+		
 		content = content + '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">'
-		+ '<a href="restaurant_info.html" rel="external" class="ui-link-inherit">'
-					+ '<img src="' + img + '" class="ui-li-image"/>\
+		+ '<a href="restaurant_info.html?id=' + id +'" rel="external" class="ui-link-inherit">'
+					+ '<img src="' + img + '" class="ui-li-image-thumb"/>\
 					<h3 class="ui-li-heading">' + name + '</h3>\
 					<p class="ui-li-desc">' + desc + '</p>\
 				</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
