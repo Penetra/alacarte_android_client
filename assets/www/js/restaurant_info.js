@@ -1,51 +1,57 @@
 $('[data-role=page]').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
+	var id = getURLParameter('id');	
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
-		url : 'https://rails-alacarte-server.herokuapp.com/restaurants.json'
+		url : 'https://rails-alacarte-server.herokuapp.com/restaurants/' + id + '.json'
 	}).success(function jsSuccess(data, textStatus, jqXHR){
-		console.log("Successfully got restaurant list");
-		writeRestaurants(data);
+		console.log("Successfully restaurant with id " + id);
+		writeRestaurant(data);
 		console.log(textStatus);
 		console.log(jqXHR);
 	}).error(function jsError(jqXHR, textStatus, errorThrown){
-		console.log('error while getting restaurant list');
+		console.log('error while getting restaurant with id ' + id);
 		console.log(jqXHR);
 		console.log(textStatus);
 		console.log(errorThrown);
 	});
 });
 
+function getURLParameter(name) {
+    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+}
 
 function writeRestaurant(data){
+	var name = data['name'];
+	$("[data-role=header]").html("<h5>" + name + "</h5>");
 	
-	var content = '<ul data-role="listview" class="ui-listview">';
+	var img = data['image'];
 	
-	$.each(data, function(i, rest){
-		
-		var name = rest['name'];
-		var img = rest['image'];
-		
-		if(img == null){
-			img = "images/default_restaurant.gif";
-		}
-		
-		var desc = rest['description'];
-		
-		if(desc == null){
-			desc = "No description available";
-		}
-		
-		content = content + '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">'
-		+ '<a href="restaurant_info.html" rel="external" class="ui-link-inherit">'
-					+ '<img src="' + img + '" class="ui-li-image"/>\
-					<h3 class="ui-li-heading">' + name + '</h3>\
-					<p class="ui-li-desc">' + desc + '</p>\
-				</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
-	});
+	if(img == null){
+		img = "images/default_restaurant.gif";
+	}
 	
-	content = content + '</ul>';
+	var desc = data['description'];
+	
+	if(desc == null){
+		desc = "No description available";
+	}
+	
+	var address = data['address'];
+	
+	if(address == null){
+		address = "No address available";
+	}
+	
+	var content = '<div class="restaurant_info_img"><img src="' + img + '" class="ui-li-image"/></div>' + '<div class="restaurant_info_details"><p>' + desc + '</p><p>' + address + '</p></div>';
+	
+	var coordinates = data['coordinates'];
+	
+	if(coordinates != null){
+		content = content + '<div class="restaurant_info_map"><img class="ui-li-map" src="https://maps.googleapis.com/maps/api/staticmap?center='+coordinates+'&amp;zoom=14&amp;size=100x100&amp;markers='+coordinates+'&amp;sensor=false"/></div>';
+	}
+	
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);
 }
