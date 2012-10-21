@@ -1,6 +1,5 @@
 $('[data-role=page]').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
-	
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
