@@ -1,6 +1,12 @@
 .ui-page {
-    background: transparent;
+	background: transparent;
 }
-.ui-content{
-    background: transparent;
+.ui-content {
+	background: transparent;
+}
+.ui-li-image {
+	position:absolute;
+	left:2%;
+	max-height:80px;
+	max-width:80px;
 }
