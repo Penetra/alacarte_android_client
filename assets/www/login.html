@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Page Title</title>
-	
+<head>	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
+	<link rel="stylesheet" href="css/styles.css" />
 	<script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
 	<!-- <script type="text/javascript" charset="utf-8" src="js/footer.js"></script> -->
-	<link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
 
 </head>
 <body>
 
-<div data-role="page" data-title="Login">
+<div data-role="page">
 	<div data-role="header" class="ui-header" role="banner">
 		<h1 class="ui-title" role="heading">Iniciar Sess&atildeo</h1>
 		<a href="index.html" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
@@ -57,7 +56,7 @@
 				data : { user : { email : "bob@mail.com", password : "bob1234" } }
 			}).success(function jsSuccess(data, textStatus, jqXHR){
 				console.log(data.auth_token);
-				$.mobile.changePage( "restaurant_list.html", { transition: "slideUp"} );
+				$.mobile.changePage("restaurant_list.html");
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
 				
 				console.log(jqXHR);
