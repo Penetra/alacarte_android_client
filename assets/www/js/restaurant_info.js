@@ -48,7 +48,7 @@ function writeRestaurant(data, id){
 	
 	var coordinates = data['coordinates'];
 	
-	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="meal_list.html?res_id='+id+'" data-role="button" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Refei&#231;&otilde;es</a><a href="restaurant_localization.html?coords='+coordinates+'" data-role="button" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Localiza&#231;&atilde;o</a></div></div>';
+	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="meal_list.html?res_id='+id+'" data-role="button" rel="external" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Refei&#231;&otilde;es</a><a href="restaurant_localization.html?coords='+coordinates+'" data-role="button" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Localiza&#231;&atilde;o</a></div></div>';
 	
 	/* Padding 5% on each side*/
 	var maxWidth = window.innerWidth * 0.9;
