@@ -49,6 +49,7 @@ function writeMealInfo(data, id, available_seats){
 		date = "No date available";
 	}
 	
+	
 	var content = '<div class="meal_img"><img src="' + img + '" class="ui-li-image"/></div>' + '<div class="meal_info"><p>Pre&#231;o: &#8364;' + price + '</p></div>'
 					+ '<div class="places_available"><p>Lugares disponiveis: ' + available_seats + '</p></div>'
 					+ '<div class="date"><p>Data: ' + date + '</p></div>';
