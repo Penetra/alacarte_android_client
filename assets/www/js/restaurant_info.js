@@ -50,14 +50,6 @@ function writeRestaurant(data, id){
 	
 	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="meal_list.html?res_id='+id+'" data-role="button" rel="external" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Refei&#231;&otilde;es</a><a href="restaurant_localization.html?coords='+coordinates+'" data-role="button" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Localiza&#231;&atilde;o</a></div></div>';
 	
-	/* Padding 5% on each side*/
-	var maxWidth = window.innerWidth * 0.9;
-	
-	if(coordinates != null){
-		content = content + '<div class="restaurant_info_map"><img class="ui-li-map" src="https://maps.googleapis.com/maps/api/staticmap?center='+coordinates+'&amp;zoom=14&amp;size='+maxWidth+"x"+maxWidth+'&amp;markers='+coordinates+'&amp;sensor=false"/></div>';
-	}
-	
-	content += '<div class="restaurant_info_details"><p>' + address + '</p></div>'
 	
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);

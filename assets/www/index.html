@@ -18,7 +18,7 @@
 			console.log(localStorage.getItem('auth_token'));
 			var next_page;
 		    try {
-		        if(localStorage.getItem('auth_token')) {
+		        if(localStorage.getItem('auth_token') && false) { //TODO- Aldrabado para não fazer login!
 		            next_page = 'restaurant_list.html';		//front page, this will probably change
 		        } else {
 		            next_page = 'welcome.html';
@@ -26,8 +26,10 @@
 		    } catch (exception) {
 				next_page = 'welcome.html';
 		    } finally {
-		    	$('body').css('backgroundImage','none');
-		        $.mobile.changePage( next_page, 'slideup');
+		    	setInterval(function(){
+		    		$('body').css('backgroundImage','none');
+			        $.mobile.changePage( next_page, 'slideup');
+		    	}, 1000);
 		    }
 		});
 	</script>

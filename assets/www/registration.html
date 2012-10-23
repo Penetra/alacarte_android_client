@@ -24,19 +24,19 @@
 	<div data-role="content">
 		<form id="register_form" name="register">
 			<p>
-				<input type="text" name="name" placeholder="Name" />
+				<input type="text" id="name" placeholder="Name" />
 			</p>
 			<p>
-				<input type="text" name="email" placeholder="Email" />
+				<input type="text" id="email" placeholder="Email" />
 			</p>
 			<p>
-				<input type="text" name="telephone" placeholder="Telephone" />
+				<input type="text" id="telephone" placeholder="Telephone" />
 			</p>
 			<p>
-				<input type="password" name="password" placeholder="Password" />
+				<input type="password" id="password" placeholder="Password" />
 			</p>
 			<p>
-				<input type="password" name="password_confirmation" placeholder="Confirm Password" />
+				<input type="password" id="password_confirmation" placeholder="Confirm Password" />
 			</p>
 			<a href="#" id="registration_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
@@ -57,19 +57,21 @@
 				url : 'https://rails-alacarte-server.herokuapp.com/users.json',
 				data : {
 					user : {
-						name : 					$('input[name="name"]').val(),
-						email : 				'alice@mail.com', 				// $('input[name="email"]').val(),
-						telephone : 			$('input[name="telephone"]').val(),
-						password : 				"alice1234",					// $('input[name="password"]').val(),
-						password_confirmation :	"alice1234"						// $('input[name="password_confirmation"]').val()
+						name : 					$('#name').val(),
+						email : 				$('#email').val(),
+						telephone : 			$('#telephone').val(),
+						password : 				$('#password').val(),					
+						password_confirmation :	$('#password_confirmation').val()
 					}
 				}
 			}).success(function jsSuccess(data, textStatus, jqXHR){
+				alert("Conta criada com sucesso");
 				$.mobile.hidePageLoadingMsg();
 				console.log(data.auth_token);
 				localStorage.setItem('auth_token', data.auth_token);
 				$.mobile.changePage('restaurant_list.html', 'slideUp');		//front page, this will probably change
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
+				alert("Erro ao criar conta");
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);

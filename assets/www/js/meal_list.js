@@ -8,7 +8,7 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
-		url : 'https://rails-alacarte-server.herokuapp.com/menu_items/'+restaurant_id+'/menus_by_restaurants.json'
+		url : 'https://rails-alacarte-server.herokuapp.com/restaurants/'+restaurant_id+'/menu_items.json'
 	}).success(function jsSuccess(data, textStatus, jqXHR){
 		console.log("Successfully got meals list");
 		writeMeals(data);
@@ -36,28 +36,23 @@ function writeMeals(data){
 		var places_left = rest['max_reservations'] - rest['cur_reservations'];
 		//alert(places_left);
 
-		//var name = rest['name'];
-		var name = "Default meal";
+		var name = rest['name'];
 		
-		//var img = rest['image'];
-		var img = "images/default_restaurant.gif";
+		var img = rest['image'];
 		
 		if(img == null){
 			img = "images/default_restaurant.gif";
 		}
 
-		//var price = rest['price'];
-		var price = 3.0;
+		var price = rest['price'];
 		
-		
-
 		var id = rest['id'];
 
 		content = content + '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">'
 		+ '<a href="meal_info.html?id=' + id +'&seats='+places_left+'" rel="external" class="ui-link-inherit">'
 		+ '<img src="' + img + '" class="ui-li-image-thumb"/>\
 		<h3 class="ui-li-heading">' + name + '</h3>\
-		<p class="ui-li-desc">' + price + ' ('+places_left+' places left)</p>\
+		<p class="ui-li-desc">&#8364;' + price + ' ('+places_left+' places left)</p>\
 		</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
 	});
 

@@ -44,8 +44,14 @@ function writeMealInfo(data, id, available_seats){
 		price = "No price available";
 	}
 	
+	var date = data['date'];
+	if(date == null){
+		date = "No date available";
+	}
+	
 	var content = '<div class="meal_img"><img src="' + img + '" class="ui-li-image"/></div>' + '<div class="meal_info"><p>Pre&#231;o: &#8364;' + price + '</p></div>'
-					+ '<div class="places_available"><p>Lugares disponiveis: ' + available_seats + '</p></div>';
+					+ '<div class="places_available"><p>Lugares disponiveis: ' + available_seats + '</p></div>'
+					+ '<div class="date"><p>Data: ' + date + '</p></div>';
 		
 	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="meal_list.html?res_id='+id+'" data-role="button" rel="external" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Efectuar Reserva</a></div></div>';
 	
