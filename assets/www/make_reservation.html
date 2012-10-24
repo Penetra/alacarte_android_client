@@ -28,23 +28,24 @@
 	</div>
 
 	<fieldset data-role="controlgroup" id="slot_choice">
-		<legend>Escolha a hora da refeicao:</legend>
-	     	<input type="radio" name="radio-choice" id="radio-choice-1" value="1200" checked="checked" />
-	     	<label for="radio-choice-1">12:00</label>
+		<legend>Escolha a hora da refeicao</legend>
+
+			<input type="radio" name="radio-choice" id="radio-choice-1" value="1200"/>
+	     	<label for="radio-choice-1">1200</label>
 	
-	     	<input type="radio" name="radio-choice" id="radio-choice-2" value="1230"  />
-	     	<label for="radio-choice-2">12:30</label>
+	     	<input type="radio" name="radio-choice" id="radio-choice-2" value="1230"/>
+	     	<label for="radio-choice-2">1230</label>
 	
-	     	<input type="radio" name="radio-choice" id="radio-choice-3" value="1300"  />
-	     	<label for="radio-choice-3">13:00</label>
+	     	<input type="radio" name="radio-choice" id="radio-choice-3" value="1300"/>
+	     	<label for="radio-choice-3">1300</label>
 	
-	     	<input type="radio" name="radio-choice" id="radio-choice-4" value="1330"  />
-	     	<label for="radio-choice-4">13:30</label>
+	     	<input type="radio" name="radio-choice" id="radio-choice-4" value="1330"/>
+	     	<label for="radio-choice-4">1330</label>
 	</fieldset>
 	
 	<fieldset data-role="controlgroup" id="payment_type">
-		<legend>Escolha o metodo de pagamento:</legend>
-	     	<input type="radio" name="radio-choice2" id="radio-choice-1" value="1" checked="checked" />
+		<legend>Escolha o metodo de pagamento</legend>
+	     	<input type="radio" name="radio-choice2" id="radio-choice-1" value="1" />
 	     	<label for="radio-choice-1">Refeicao pre-paga</label>
 	
 	     	<input type="radio" name="radio-choice2" id="radio-choice-2" value="2"  />
@@ -63,24 +64,26 @@
 	<div data-role="footer"></div>
 
 	<script type="text/javascript">
-		function getURLParameter(name) {
-		    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
-		}
-		
-		$('#confirmation_button').click(function(){
+		$('#confirmation_button').click(function(){	
 			var slot = $('input:radio[name=radio-choice]:checked').val();
 			var payment_method = $('input:radio[name=radio-choice2]:checked').val();
 			var date = getURLParameter('date');
-
-			alert(slot+' '+payment_method);
+			var meal_id = getURLParameter('meal_id');
 			
-			if(payment_method = "1")
-				window.location = ("payment_prepaid.html?slot="+slot+"&meal_id="+meal_id+'&date='+date);
-			else if(payment_method = "2")
-				window.location = ("payment_mb.html?slot="+slot+"&meal_id="+meal_id+'&date='+date);
-			else
-				window.location = ("payment_paypal.html?slot="+slot+"&meal_id="+meal_id+'&date='+date);
+			if(payment_method == "1"){
+				$.mobile.changePage('payment_prepaid.html?slot='+slot+'&meal_id='+meal_id+'&date='+date);
+			}
+			else if(payment_method == "2"){
+				$.mobile.changePage('payment_mb.html?slot='+slot+'&meal_id='+meal_id+'&date='+date);	
+			}
+			else{
+				$.mobile.changePage('payment_paypal.html?slot='+slot+'&meal_id='+meal_id+'&date='+date);			
+			}
 		});
+		
+		function getURLParameter(name) {
+		    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+		}
 	</script>
 
 </div>

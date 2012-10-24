@@ -5,6 +5,8 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 	var available_seats = getURLParameter('seats');
 	var date = getURLParameter('date');
 	
+	alert(date);
+	
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',

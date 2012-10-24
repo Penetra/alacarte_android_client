@@ -30,15 +30,15 @@ function getURLParameter(name) {
 
 function writeMeals(data){
 	
-	//var content = '<ul data-role="listview" class="ui-listview">';
-	
+	var weekdays_names = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
 	var content = '<ul data-role="listview" data-autodividers="true" class="ui-listview">';	
-	
 	var curr_day = "";
+	var meal_count = 0;
 	
 	$.each(data, function(i, rest){
+		meal_count ++;
+		
 		var places_left = rest['max_reservations'] - rest['cur_reservations'];
-		//alert(places_left);
 
 		var name = rest['name'];
 		
@@ -56,7 +56,9 @@ function writeMeals(data){
 		
 		if(date != curr_day){
 			//Adicionar novo divisor
-			content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">'+date+'</li>';
+			var date_aux = new Date(date);
+			var weekday = weekdays_names[date_aux.getDay()];
+			content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">'+weekday+', '+date+'</li>';
 		}
 		//Senão, adicionar só os items.
 		curr_day = date;
@@ -67,10 +69,14 @@ function writeMeals(data){
 		<h3 class="ui-li-heading">' + name + '</h3>\
 		<p class="ui-li-desc">&#8364;' + price + ' ('+places_left+' places left)</p>\
 		</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
-		
 	});
 
 	content = content + '</ul>';
+	
+	if(meal_count == 0){
+		content = content + 'Restaurante sem refeicoes disponiveis';
+	}
+	
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);
 

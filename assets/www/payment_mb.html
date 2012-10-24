@@ -102,13 +102,11 @@
 					}
 				}
 			}).success(function jsSuccess(data, textStatus, jqXHR){
-				alert("Sucesso");
-				console.log(data.auth_token);
+				alert("Reserva confirmada");
 				$.mobile.hidePageLoadingMsg();
-				localStorage.setItem('auth_token', data.auth_token);
 				$.mobile.changePage('restaurant_list.html', 'slideUp');		//front page, this will probably change
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
-				alert("Falha de autenticação");
+				alert("Erro ao marcar a reserva, por favor tente novamente");
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);

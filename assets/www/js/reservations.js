@@ -1,10 +1,11 @@
 $('[data-role=page]').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
+	var auth_token = localStorage.getItem('auth_token'); 
 	$.ajax({
 		//Auth_token? User?
 		type : 'GET',
 		dataType : 'json',
-		url : 'https://rails-alacarte-server.herokuapp.com/reservations.json'
+		url : 'https://rails-alacarte-server.herokuapp.com/reservations.json?auth_token='+auth_token
 	}).success(function jsSuccess(data, textStatus, jqXHR){
 		console.log("Successfully got reservations list");
 		writeReservations(data);
@@ -39,6 +40,15 @@ function writeReservations(data){
 		}
 		
 		var id = rest['id'];
+		
+		if(date != curr_day){
+			//Adicionar novo divisor
+			var date_aux = new Date(date);
+			var weekday = weekdays_names[date_aux.getDay()];
+			content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">'+weekday+', '+date+'</li>';
+		}
+		//Senão, adicionar só os items.
+		curr_day = date;
 		
 		content = content + '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">'
 		+ '<a href="reservation_info.html?id=' + id +'" rel="external" class="ui-link-inherit">'
