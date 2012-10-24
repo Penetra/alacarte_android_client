@@ -54,16 +54,18 @@
 				url : 'https://rails-alacarte-server.herokuapp.com/users/sign_in.json',
 				data : {
 					user : {
-						email : "bob@mail.com",		// $('input[name="email"]').val(),
-						password : "bob1234"		// $('input[name="password"]').val()
+						email : $('#email').val(),
+						password : $('#password').val()
 					}
 				}
 			}).success(function jsSuccess(data, textStatus, jqXHR){
-				console.log(data.auth_token)
+				alert("Sucesso");
+				console.log(data.auth_token);
 				$.mobile.hidePageLoadingMsg();
 				localStorage.setItem('auth_token', data.auth_token);
 				$.mobile.changePage('restaurant_list.html', 'slideUp');		//front page, this will probably change
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
+				alert("Falha de autenticação");
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);

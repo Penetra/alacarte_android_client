@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div data-role="page" id="welcome">
+<div data-role="page" id="settings">
 	<div data-role="header">
 		<h1>Defini&#231;&#245;es</h1>
 	</div>
@@ -19,6 +19,16 @@
 		<a href="#" id="logout_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text">Terminar Sess&atildeo</span>
+			</span>
+		</a>
+		<a href="edit_password.html" rel="external" id="change_pass_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text">Modificar Password</span>
+			</span>
+		</a>
+		<a href="edit_account.html" rel="external" id="change_account_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text">Editar Conta</span>
 			</span>
 		</a>
 	</div>
@@ -33,13 +43,15 @@
 		</div>
 	</div>
 	
+
+</div>
+
 	<script type="text/javascript">
 		$('#logout_button').click(function(){
 			localStorage.removeItem('auth_token');
 			$.mobile.changePage('welcome.html', 'slideUp');
 		});
 	</script>
-</div>
 
 </body>
 </html>
