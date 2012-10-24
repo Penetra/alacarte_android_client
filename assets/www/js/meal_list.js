@@ -62,7 +62,7 @@ function writeMeals(data){
 		curr_day = date;
 
 		content = content + '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">'
-		+ '<a href="meal_info.html?id=' + id +'&seats='+places_left+'" rel="external" class="ui-link-inherit">'
+		+ '<a href="meal_info.html?id=' + id +'&seats='+places_left+'&date='+date+'" rel="external" class="ui-link-inherit">'
 		+ '<img src="' + img + '" class="ui-li-image-thumb"/>\
 		<h3 class="ui-li-heading">' + name + '</h3>\
 		<p class="ui-li-desc">&#8364;' + price + ' ('+places_left+' places left)</p>\

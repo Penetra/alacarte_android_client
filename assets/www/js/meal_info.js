@@ -3,6 +3,7 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 	
 	var id = getURLParameter('id');
 	var available_seats = getURLParameter('seats');
+	var date = getURLParameter('date');
 	
 	$.ajax({
 		type : 'GET',
@@ -10,7 +11,7 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 		url : 'https://rails-alacarte-server.herokuapp.com/meals/' + id + '.json'
 	}).success(function jsSuccess(data, textStatus, jqXHR){
 		console.log("Successfully received meal with id " + id);
-		writeMealInfo(data, id, available_seats);
+		writeMealInfo(data, id, available_seats, date);
 		console.log(textStatus);
 		console.log(jqXHR);
 	}).error(function jsError(jqXHR, textStatus, errorThrown){
@@ -25,7 +26,7 @@ function getURLParameter(name) {
     return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 }
 
-function writeMealInfo(data, id, available_seats){
+function writeMealInfo(data, id, available_seats, date){
 	var name = data['name'];
 		
 	//TODO- Not showing. CSS?
@@ -43,18 +44,12 @@ function writeMealInfo(data, id, available_seats){
 	if(price == null){
 		price = "No price available";
 	}
-	
-	var date = data['date'];
-	if(date == null){
-		date = "No date available";
-	}
-	
-	
+		
 	var content = '<div class="meal_img"><img src="' + img + '" class="ui-li-image"/></div>' + '<div class="meal_info"><p>Pre&#231;o: &#8364;' + price + '</p></div>'
 					+ '<div class="places_available"><p>Lugares disponiveis: ' + available_seats + '</p></div>'
 					+ '<div class="date"><p>Data: ' + date + '</p></div>';
 		
-	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="meal_list.html?res_id='+id+'" data-role="button" rel="external" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Efectuar Reserva</a></div></div>';
+	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="make_reservation.html?meal_id='+id+'&date='+date+'" data-role="button" rel="external" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Efectuar Reserva</a></div></div>';
 	
 	/* Padding 5% on each side*/
 	var maxWidth = window.innerWidth * 0.9;
