@@ -7,27 +7,39 @@
 	<script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
-	<!-- <script type="text/javascript" charset="utf-8" src="js/footer.js"></script>  -->
 </head>
 <body>
-	<div data-role="page" id="restaurant-list">
+	<div data-role="page" class="restaurant-list">
 		<script type="text/javascript" charset="utf-8" src="js/restaurant_list.js"></script>
 		<div data-role="header">
 			<h1>Restaurantes</h1>
+			<a class="p-back-link" href="#" data-transition="slide" data-direction="reverse" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text">Back</span>
+				<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
+			</span>
+		</a>
 		</div>
 		<div data-role="content">	
 			
 		</div>
 			
-		<div data-role="footer" data-id="navbar"> 
+		<div data-role="footer" data-id="navbar" class="p-footer"> 
 			<div data-role="navbar">
 				<ul>
 					<li><a href="restaurant_list.html">Restaurantes</a></li>
+					<li><a href="meal_list.html">Refei&#231;&#245;es</a></li>
 					<li><a href="reservations.html">Reservas</a></li>
 					<li><a href="settings.html" ref="external">Defini&#231;&#245;es</a></li>
 				</ul>
 			</div>
 		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.p-back-link').attr('href', localStorage.getItem('rootPage'));
+		});	
+		</script>
 	</div>
+	
 </body>
 </html>

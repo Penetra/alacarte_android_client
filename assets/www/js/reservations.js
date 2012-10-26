@@ -1,4 +1,4 @@
-$('[data-role=page]').live('pageshow', function (event, ui) {
+$('.reservations').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
 	var auth_token = localStorage.getItem('auth_token'); 
 	$.ajax({

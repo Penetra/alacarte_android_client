@@ -1,4 +1,4 @@
-$('[data-role=page]').live('pageshow', function (event, ui) {
+$('.restaurant-list').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
 	$.ajax({
 		type : 'GET',

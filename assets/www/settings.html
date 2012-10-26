@@ -3,10 +3,10 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
+	<link rel="stylesheet" href="css/styles.css" />
 	<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script> 
-	<!-- <script type="text/javascript" charset="utf-8" src="js/footer.js"></script> -->
+	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
 </head>
 <body>
 
@@ -16,11 +16,6 @@
 	</div>
 
 	<div data-role="content">
-		<a href="#" id="logout_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
-			<span class="ui-btn-inner ui-btn-corner-all">
-				<span class="ui-btn-text">Terminar Sess&atildeo</span>
-			</span>
-		</a>
 		<a href="edit_password.html" rel="external" id="change_pass_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text">Modificar Password</span>
@@ -29,6 +24,11 @@
 		<a href="edit_account.html" rel="external" id="change_account_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text">Editar Conta</span>
+			</span>
+		</a>
+		<a href="#" id="logout_button" data-role="button" data-transition="slide" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text">Terminar Sess&atilde;o</span>
 			</span>
 		</a>
 	</div>
@@ -48,7 +48,8 @@
 
 	<script type="text/javascript">
 		$('#logout_button').click(function(){
-			localStorage.removeItem('auth_token');
+			localStorage.clear();
+			localStorage.setItem("rootPage", "welcome.html");
 			$.mobile.changePage('welcome.html', 'slideUp');
 		});
 	</script>

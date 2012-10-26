@@ -42,3 +42,8 @@
 .restaurant_info_meals {
 	
 }
+.p-footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+}

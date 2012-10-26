@@ -30,7 +30,7 @@ function getURLParameter(name) {
 
 function writeMeals(data){
 	
-	var weekdays_names = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+	var weekdays_names = ["Domingo", "Segunda-feira", "Ter&#231;a-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "S&#225;bado"];
 	var content = '<ul data-role="listview" data-autodividers="true" class="ui-listview">';	
 	var curr_day = "";
 	var meal_count = 0;
@@ -74,7 +74,7 @@ function writeMeals(data){
 	content = content + '</ul>';
 	
 	if(meal_count == 0){
-		content = content + 'Restaurante sem refeicoes disponiveis';
+		content = content + 'Restaurante sem refei&#231;&otilde;es dispon&#237;veis';
 	}
 	
 	$.mobile.hidePageLoadingMsg();

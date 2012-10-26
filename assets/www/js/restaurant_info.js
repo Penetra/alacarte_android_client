@@ -1,4 +1,4 @@
-$('[data-role=page]').live('pagecreate', function (event, ui) {
+$('[data-role=page]').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
 	var id = getURLParameter('id');	
 	$.ajax({
