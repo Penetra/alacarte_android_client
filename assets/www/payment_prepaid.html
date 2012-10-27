@@ -13,11 +13,21 @@
 	<div data-role="page" id="payment_prepaid">
 		
 		<div data-role="header">
-			<h1></h1>
+			<h1>Refeicao Pre-paga</h1>
 		</div>
-	
-		<div data-role="content">
 		
+		<div data-role="content">
+			<div class="prepaid_img"><img src="images/credits.png" class="ui-li-image"/></div>
+			
+			Custo da refeicao: 
+				
+			Creditos disponiveis:
+					
+			<a href="#" id="confirm_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
+				<span class="ui-btn-inner ui-btn-corner-all">
+					<span class="ui-btn-text">Confirmar reserva</span>
+				</span>
+			</a>
 		</div>
 			
 		<div data-role="footer" data-id="navbar" data-position="fixed"> 
@@ -29,6 +39,53 @@
 				</ul>
 			</div>
 		</div>
+		
+		<script type="text/javascript">
+		function getURLParameter(name) {
+		    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+		}
+		
+		$('#confirm_button').click(function(){
+			$.mobile.showPageLoadingMsg();
+			
+			var curr_credits = localStorage.getItem('credits');
+			var cost_credits = localStorage.getItem('curr_meal_cost');
+			
+			var menu_item_id = getURLParameter("meal_id");
+			var slot = getURLParameter("hour") + getURLParameter("minute");
+			
+			
+			if(curr_credits <= cost_credits){ //If enough credits, post reservation				
+				$.ajax({
+					type : 'POST',
+					dataType : 'json',
+					url : 'https://rails-alacarte-server.herokuapp.com/reservations.json',
+					data : {
+						auth_token : localStorage.getItem('auth_token'),
+						reservation : {
+							menu_item_id  : "6",		
+							time_slot 	  :	"1230"
+						}
+					}
+				}).success(function jsSuccess(data, textStatus, jqXHR){
+					alert("Reserva confirmada");
+					$.mobile.hidePageLoadingMsg();
+					$.mobile.changePage('home.html', 'slideUp');
+				}).error(function jsError(jqXHR, textStatus, errorThrown){
+					alert("Erro ao marcar a reserva, por favor tente novamente");
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+					$.mobile.hidePageLoadingMsg();
+					$.mobile.changePage('home.html', 'slideUp');
+				});
+			}
+			else
+				alert("Creditos insuficientes");
+			
+		});
+	</script>
+		
 	</div>
 </body>
 </html>

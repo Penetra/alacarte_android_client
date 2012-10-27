@@ -26,35 +26,26 @@
 			</span>
 		</a>
 	</div>
-
-	<fieldset data-role="controlgroup" id="slot_choice">
-		<legend>Escolha a hora da refeicao</legend>
-
-			<input type="radio" name="radio-choice" id="radio-choice-1" value="1200"/>
-	     	<label for="radio-choice-1">1200</label>
 	
-	     	<input type="radio" name="radio-choice" id="radio-choice-2" value="1230"/>
-	     	<label for="radio-choice-2">1230</label>
+	<div id="date_payment_select">
+		<select name="slot_hour" id="select-choice-1">
+			<option value="12">12</option>
+			<option value="13">13</option>
+		</select>
+		
+		<select name="slot_minute" id = "select-choice-2">
+			<option value="00">00</option>
+			<option value="30">30</option>
+		</select>
+		<p></p>
+		<select name="payment_method" id = "select-choice-3">
+			<option value="1">Pre-paga</option>
+			<option value="2">Multibanco</option>
+			<option value="3">PayPal</option>
+		</select>
+		
+	</div>
 	
-	     	<input type="radio" name="radio-choice" id="radio-choice-3" value="1300"/>
-	     	<label for="radio-choice-3">1300</label>
-	
-	     	<input type="radio" name="radio-choice" id="radio-choice-4" value="1330"/>
-	     	<label for="radio-choice-4">1330</label>
-	</fieldset>
-	
-	<fieldset data-role="controlgroup" id="payment_type">
-		<legend>Escolha o metodo de pagamento</legend>
-	     	<input type="radio" name="radio-choice2" id="radio-choice-1" value="1" />
-	     	<label for="radio-choice-1">Refeicao pre-paga</label>
-	
-	     	<input type="radio" name="radio-choice2" id="radio-choice-2" value="2"  />
-	     	<label for="radio-choice-2">Multibanco</label>
-	
-	     	<input type="radio" name="radio-choice2" id="radio-choice-3" value="3"  />
-	     	<label for="radio-choice-3">PayPal</label>
-	</fieldset>
-	<p></p>
 	<a href="#" id="confirmation_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 		<span class="ui-btn-inner ui-btn-corner-all">
 			<span class="ui-btn-text">Continuar</span>
@@ -65,19 +56,20 @@
 
 	<script type="text/javascript">
 		$('#confirmation_button').click(function(){	
-			var slot = $('input:radio[name=radio-choice]:checked').val();
-			var payment_method = $('input:radio[name=radio-choice2]:checked').val();
-			var date = getURLParameter('date');
+			var slot_hour = $('#select-choice-1 option:selected').val();
+			var slot_minute = $('#select-choice-2 option:selected').val();
+			var payment_method = $('#select-choice-3 option:selected').val();
 			var meal_id = getURLParameter('meal_id');
 			
+			alert(slot_hour);
 			if(payment_method == "1"){
-				$.mobile.changePage('payment_prepaid.html?slot='+slot+'&meal_id='+meal_id+'&date='+date);
+				$.mobile.changePage('payment_prepaid.html?hour='+slot_hour+'&minute='+slot_minute+'&meal_id='+meal_id);	
 			}
 			else if(payment_method == "2"){
-				$.mobile.changePage('payment_mb.html?slot='+slot+'&meal_id='+meal_id+'&date='+date);	
+				$.mobile.changePage('payment_mb.html?hour='+slot_hour+'&minute='+slot_minute+'&meal_id='+meal_id);	
 			}
 			else{
-				$.mobile.changePage('payment_paypal.html?slot='+slot+'&meal_id='+meal_id+'&date='+date);			
+				$.mobile.changePage('payment_paypal.html?hour='+slot_hour+'&minute='+slot_minute+'&meal_id='+meal_id);	
 			}
 		});
 		

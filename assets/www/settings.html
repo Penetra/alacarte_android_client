@@ -59,6 +59,29 @@
 
 	<script type="text/javascript">
 		$('#logout_button').click(function(){
+			/*$.mobile.showPageLoadingMsg();
+			$.ajax({
+				type : 'DELETE',
+				dataType : 'json',
+				url : 'https://rails-alacarte-server.herokuapp.com/users/sign_out.json',
+				data : {
+					auth_token : localStorage.getItem('auth_token')
+				}
+			}).success(function jsSuccess(data, textStatus, jqXHR){
+				$.mobile.hidePageLoadingMsg();
+				console.log(data);
+				console.log(textStatus);
+				console.log(jqXHR);
+				localStorage.clear();
+				localStorage.setItem("rootPage", "welcome.html");
+				$.mobile.changePage('welcome.html', 'slideUp');
+			}).error(function jsError(jqXHR, textStatus, errorThrown){
+				$.mobile.hidePageLoadingMsg();
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+				alert(errorThrown);
+			});*/
 			localStorage.clear();
 			localStorage.setItem("rootPage", "welcome.html");
 			$.mobile.changePage('welcome.html', 'slideUp');

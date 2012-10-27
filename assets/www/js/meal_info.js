@@ -59,6 +59,7 @@ function writeMealInfo(data){
 	else{
 		content += '<h1>Necessita de iniciar sess&atilde;o para efectuar uma reserva';
 	}
+	localStorage.setItem('curr_meal_cost', price);
 	/* Padding 5% on each side*/
 	var maxWidth = window.innerWidth * 0.9;
 	
