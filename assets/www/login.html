@@ -30,7 +30,7 @@
 	<div data-role="content">
 		<form id="login_form">
 			<p>
-				<input type="text" name="email" placeholder="Email" />
+				<input type="email" name="email" placeholder="Email" />
 			</p>
 			<p>
 				<input type="password" name="password" placeholder="Password" />
@@ -48,6 +48,11 @@
 	</div>
 
 	<script type="text/javascript">
+		$(document).ready(function(){
+			if(localStorage.getItem("auth_token") != null){
+				$.mobile.changePage('home.html', 'slideUp');
+			}
+		});
 		$('#login_button').click(function(){
 			$.mobile.showPageLoadingMsg();
 			$.ajax({
@@ -66,8 +71,8 @@
 				console.log(jqXHR);
 				$.mobile.hidePageLoadingMsg();
 				localStorage.setItem('auth_token', data.auth_token);
-				localStorage.setItem('username', "Penetra");
-				localStorage.setItem('credits', 10000);
+				localStorage.setItem('username', data.name);
+				localStorage.setItem('credits', data.credits);
 				localStorage.setItem("rootPage", "home.html");
 				$.mobile.changePage('home.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
