@@ -13,7 +13,7 @@
 		<script type="text/javascript" charset="utf-8" src="js/restaurant_list.js"></script>
 		<div data-role="header" class="ui-header" role="banner">
 			<h1>Restaurantes</h1>
-			<a href="#" class="p-back-link" data-transition="slide" data-direction="reverse" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+			<a href="#" id="p-back-link" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
 					<span class="ui-btn-text">Back</span>
 					<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
@@ -35,8 +35,8 @@
 		</div>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('.p-back-link').attr('href', localStorage.getItem('rootPage'));
-			});
+				$('#p-back-link').attr('href', localStorage.getItem('rootPage'));
+			});	
 		</script>
 	</div>
 </body>

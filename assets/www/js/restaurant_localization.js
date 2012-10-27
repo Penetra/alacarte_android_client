@@ -14,7 +14,7 @@ $('#restaurant-localization').live('pagecreate', function () {
 	$.mobile.hidePageLoadingMsg();
 });
 
-$('.p-back-button').live('click', function(){
+$('#p-back-button').live('click', function(){
 	$.mobile.changePage("restaurant_info.html?id=" + id, null, true, true);
 });
 
