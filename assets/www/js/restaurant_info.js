@@ -2,9 +2,9 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
 	
 	var current_restaurant = JSON.parse(localStorage.getItem('current_restaurant'));
-	var id = getURLParameter('id');
 	
 	if(current_restaurant == null){
+		var id = getURLParameter('id');
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
@@ -23,7 +23,7 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 		});
 	}
 	else{
-		writeRestaurant(current_restaurant, id);
+		writeRestaurant(current_restaurant, current_restaurant.id);
 	}
 });
 
@@ -51,7 +51,7 @@ function writeRestaurant(data, id){
 		content += '<div class="restaurant_info_details"><p>' + desc + '</p></div>';
 	}
 	
-	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="meal_list.html?res_id='+id+'" data-role="button" rel="external" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c" rel="external"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Refei&#231;&otilde;es</span></span></a><a href="restaurant_localization.html" data-role="button" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c" rel="external"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Localiza&#231;&atilde;o</span></span></a></div></div>';
+	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="restaurant_meal_list.html" data-role="button" rel="external" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c" rel="external"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Refei&#231;&otilde;es</span></span></a><a href="restaurant_localization.html" data-role="button" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c" rel="external"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Localiza&#231;&atilde;o</span></span></a></div></div>';
 	
 	if(address != null){
 		content += '<div class="restaurant_info_details"><p>' + address + '</p></div>';

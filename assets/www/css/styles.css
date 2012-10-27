@@ -12,7 +12,7 @@
 }
 .ui-li-image {
 	display: inline-block;
-	max-height: 250px;
+	max-width: 90%;
 }
 .p-ui-title {
 	min-height: 1.1em;

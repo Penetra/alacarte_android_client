@@ -7,6 +7,7 @@ var my_position_exists = new Boolean(0);
 
 $('#restaurant-localization').live('pagecreate', function () {
 	$.mobile.showPageLoadingMsg();	
+	
 	var current_restaurant = JSON.parse(localStorage.getItem("current_restaurant"));
 	id = current_restaurant['id'];
 	
