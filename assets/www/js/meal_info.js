@@ -53,6 +53,8 @@ function writeMealInfo(data, id, available_seats, date){
 		
 	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="make_reservation.html?meal_id='+id+'&date='+date+'" data-role="button" rel="external" class="ui-btn ui-btn-corner-all ui-btn-hover-c ui-btn-up-c">Efectuar Reserva</a></div></div>';
 	
+	localStorage.setItem('curr_meal_cost', price);
+	
 	/* Padding 5% on each side*/
 	var maxWidth = window.innerWidth * 0.9;
 	

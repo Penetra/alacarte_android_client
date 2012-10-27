@@ -15,36 +15,44 @@
 		<div data-role="header">
 			<h1>Pagamento por Multibanco</h1>
 		</div>
-	
+		
 		<div data-role="content">
-			<p>
-				<input type="text" id="card_number" name="card_number" placeholder="Numero do cartao" />
-			</p>
-			<p>
-				<select name="month_vailidity" id="select-choice-0">
-				<option value="1">Janeiro</option>
-				<option value="2">Fevereiro</option>
-				<option value="3">Marco</option>
-				<option value="4">Abril</option>
-				<option value="5">Maio</option>
-				<option value="6">Junho</option>
-				<option value="7">Julho</option>
-				<option value="8">Agosto</option>
-				<option value="9">Setembro</option>
-				<option value="10">Outubro</option>
-				<option value="11">Novembro</option>
-				<option value="12">Dezembro</option>
-				</select>
+			<div class="mb_img"><img src="images/CreditCards.png" class="ui-li-image"/></div>
 			
-				<select name="year_vailidity" id="select-choice-1">
-				<option value="2012">2012</option>
-				<option value="2013">2013</option>
-				<option value="2014">2014</option>
-				<option value="2015">2015</option>
-				<option value="2016">2016</option>
-				</select>
-			
+			<p>
+				<input type="number" id="card_number" name="card_number" value placeholder="Numero do cartao" /> <input type="number" id="cvc2" name="cvc2" value placeholder="CVC2" />
 			</p>
+				
+			<fieldset data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal"><div role="heading" class="ui-controlgroup-label">Data de validade:</div><div class="ui-controlgroup-controls">
+			
+				
+			<label id="select-choice-month" for="select-choice-month" class="ui-select">Mes</label>
+				<div class="ui-select"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="arrow-d" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-corner-left ui-btn-up-c"><select name="select-choice-month" id="select-choice-month">
+					<option value="1">Janeiro</option>
+					<option value="2">Fevereiro</option>
+					<option value="3">Marco</option>
+					<option value="4">Abril</option>
+					<option value="5">Maio</option>
+					<option value="6">Junho</option>
+					<option value="7">Julho</option>
+					<option value="8">Agosto</option>
+					<option value="9">Setembro</option>
+					<option value="10">Outubro</option>
+					<option value="11">Novembro</option>
+					<option value="12">Dezembro</option>
+				</select></div></div>
+		
+			<label id="select-choice-year"for="select-choice-year" class="ui-select">Ano</label>
+				<div class="ui-select"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="arrow-d" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-corner-right ui-controlgroup-last ui-btn-up-c"><select name="select-choice-year" id="select-choice-year">
+					<option value="12">2012</option>
+					<option value="13">2013</option>
+					<option value="14">2014</option>
+					<option value="15">2015</option>
+					<option value="16">2016</option>
+					<option value="17">2017</option>
+				</select></div></div>
+			</div></fieldset>
+				
 			<a href="#" id="confirm_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
 					<span class="ui-btn-text">Confirmar reserva</span>
@@ -67,24 +75,13 @@
 		    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 		}
 		
-		$('#login_button').click(function(){
+		$('#confirm_button').click(function(){
 			$.mobile.showPageLoadingMsg();
 			
 			var menu_item_id = getURLParameter("meal_id");
-			var slot = getURLParameter("slot");
-			var date = getURLParameter("date");
+			var slot = getURLParameter("hour") + getURLParameter("minute");
 			
-			alert(menu_item_id);
 			alert(slot);
-			alert(date);
-			
-			//Parse date
-			date2 = new Date(date);
-			var year = date2.getFullYear();
-			var month = date2.getMonth();
-			var day = date2.getDate();
-			var hour = date.charAt(0) + date.charAt(1);
-			var minutes = date.charAt(2) + date.charAt(3);
 			
 			$.ajax({
 				type : 'POST',
@@ -93,23 +90,21 @@
 				data : {
 					auth_token : localStorage.getItem('auth_token'),
 					reservation : {
-						menu_item_id  : 	menu_item_id,
-						time_slot(1i) : 	year,
-						time_slot(2i) :		month,
-						time_slot(3i) :		day,
-						time_slot(4i) :		hour,
-						time_slot(5i) :		minutes
+						menu_item_id  : "6",		
+						time_slot 	  :	"1230"
 					}
 				}
 			}).success(function jsSuccess(data, textStatus, jqXHR){
 				alert("Reserva confirmada");
 				$.mobile.hidePageLoadingMsg();
-				$.mobile.changePage('restaurant_list.html', 'slideUp');		//front page, this will probably change
+				$.mobile.changePage('home.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
 				alert("Erro ao marcar a reserva, por favor tente novamente");
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);
+				$.mobile.hidePageLoadingMsg();
+				$.mobile.changePage('home.html', 'slideUp');
 			});
 		});
 	</script>
