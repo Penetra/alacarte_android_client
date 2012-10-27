@@ -16,21 +16,21 @@
 			console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 			console.log(localStorage.getItem('auth_token'));
 			var next_page;
-		    try {
-		        if(localStorage.getItem('auth_token')) {
-		            next_page = 'home.html';		//front page, this will probably change
-		        } else {
+				try {
+						if(localStorage.getItem('auth_token')) {
+								next_page = 'home.html';
+						} else {
 					localStorage.setItem("rootPage", "welcome.html");
-		            next_page = 'welcome.html';
-		        }
-		    } catch (exception) {
+								next_page = 'welcome.html';
+						}
+				} catch (exception) {
 				next_page = 'welcome.html';
-		    } finally {
-		    	setTimeout(function(){
-		    		//$('body').css('backgroundImage','none');
-			        $.mobile.changePage(next_page, 'slideup');
-		    	}, 0);
-		    }
+				} finally {
+					setTimeout(function(){
+						//$('body').css('backgroundImage','none');
+							$.mobile.changePage(next_page, 'slideup');
+					}, 0);
+				}
 		});
 	</script>
 </div>

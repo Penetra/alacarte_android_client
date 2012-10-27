@@ -42,16 +42,19 @@
 .restaurant_info_meals {
 	
 }
+.p-content {
+	margin-bottom:40px;
+}
 .p-footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
+	position:fixed;
+	z-index:9999;
+	bottom:0;
+	right:0;
+	left:0;
 }
 .p-welcome {
 	padding-top:120px;
 }
-
 .p-home {
 	padding-top:120px;
 }
-
