@@ -5,9 +5,18 @@ var my_position_long = -1.1;
 
 var my_position_exists = new Boolean(0);
 
-function getURLParameter(name) {
-    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
-}
+$('#restaurant-localization').live('pagecreate', function () {
+	$.mobile.showPageLoadingMsg();	
+	var current_restaurant = JSON.parse(localStorage.getItem("current_restaurant"));
+	id = current_restaurant['id'];
+	
+	initializeMap(current_restaurant);
+	$.mobile.hidePageLoadingMsg();
+});
+
+$('.p-back-button').live('click', function(){
+	$.mobile.changePage("restaurant_info.html?id=" + id, null, true, true);
+});
 
 function myPositionSuccess(position){
 	my_position_lat = position.coords.latitude;
@@ -16,22 +25,20 @@ function myPositionSuccess(position){
 }
 
 function myPositionError(error){
-	alert("Error while determining position: "+ error.message);
+	console.log("Error while determining position: "+ error.message);
 }
 
-function initializeMap(lat, long) {
-//	console.log(lat);
-//	console.log(long);
-	
+function initializeMap(current_restaurant) {
 	// Directions declarations
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	
-	
-	var name = getURLParameter("name").replace(/\+/g,' ');
+	var coords = current_restaurant['coordinates'].split(',');	
+	var lat = coords[0];
+	var long = coords[1];
+	var name = current_restaurant['name'];
 	
 	$("[data-role=header] h1").html(name);
-	
 	
 	var maxWidth = window.innerWidth * 0.9;
 	var maxHeight = window.innerHeight * 0.8;
@@ -50,10 +57,10 @@ function initializeMap(lat, long) {
 	if(my_position_exists == true){
 		var my_position = new google.maps.LatLng(String(my_position_lat), String(my_position_long));
 		var center = new google.maps.LatLng(String((parseFloat(lat) + my_position_lat) / 2), String((parseFloat(long) + my_position_long) /2));
-		var mapOptions = { center : center, zoom : 8, mapTypeId : google.maps.MapTypeId.HYBRID };
+		var mapOptions = { center : center, zoom : 15, mapTypeId : google.maps.MapTypeId.HYBRID };
 	}
 	else{
-		var mapOptions = { center : restaurant_position, zoom : 8	, mapTypeId : google.maps.MapTypeId.HYBRID };
+		var mapOptions = { center : restaurant_position, zoom : 15	, mapTypeId : google.maps.MapTypeId.HYBRID };
 	}
     
 	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -105,17 +112,3 @@ function initializeMap(lat, long) {
        
     google.maps.event.trigger(map,'resize');
 }
-
-$('#restaurant-localization').live('pagecreate', function () {
-	$.mobile.showPageLoadingMsg();
-	
-	id = getURLParameter('id');
-	
-	var coords = getURLParameter('coords').split(',');	
-	initializeMap(coords[0], coords[1]);
-	$.mobile.hidePageLoadingMsg();
-});
-
-$('#back_button').live('click', function(){
-	$.mobile.changePage("restaurant_info.html?id=" + id, null, true, true);
-});

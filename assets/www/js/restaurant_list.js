@@ -1,5 +1,6 @@
 $('.restaurant-list').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
+	localStorage.removeItem('current_restaurant');
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',

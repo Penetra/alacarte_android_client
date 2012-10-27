@@ -43,7 +43,15 @@
 	
 }
 .p-footer {
-	position:absolute;
-	bottom:0;
-	width:100%;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
+.p-welcome {
+	padding-top:120px;
+}
+
+.p-home {
+	padding-top:120px;
+}
+
