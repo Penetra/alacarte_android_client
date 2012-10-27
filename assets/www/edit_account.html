@@ -57,18 +57,18 @@
 					}
 				}
 			}).success(function jsSuccess(data, textStatus, jqXHR){
+				$.mobile.hidePageLoadingMsg();
 				console.log(data);
 				console.log(textStatus);
 				console.log(jqXHR);
-				$.mobile.hidePageLoadingMsg();
 				$.mobile.changePage('settings.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
+				$.mobile.hidePageLoadingMsg();
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);
-				$.mobile.hidePageLoadingMsg();
 				alert(errorThrown);
-			});	
+			});
 		});
 	</script>
 </div>
