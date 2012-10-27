@@ -6,14 +6,13 @@
 	<script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
-	<!-- <script type="text/javascript" charset="utf-8" src="js/footer.js"></script> -->
 </head>
 <body>
 
 <div data-role="page" id="edit-account">
 	<div data-role="header">
 		<h1>Editar conta</h1>
-		<a href="welcome.html" data-transition="slide" data-direction="reverse" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+		<a href="home.html" data-transition="slide" data-direction="reverse" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text">Back</span>
 				<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
@@ -24,13 +23,13 @@
 	<div data-role="content">
 		<form id="register_form" name="register">
 			<p>
-				<input type="text" id="name" placeholder="Nome" />
+				<input type="text" name="name" placeholder="Nome" />
 			</p>
 			<p>
-				<input type="text" id="email" placeholder="E-mail" />
+				<input type="email" name="email" placeholder="E-mail" />
 			</p>
 			<p>
-				<input type="text" id="telephone" placeholder="Telefone" />
+				<input type="tel" name="telephone" placeholder="Telefone" />
 			</p>
 			<a href="#" id="confirm_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
@@ -52,19 +51,23 @@
 				data : {
 					auth_token : localStorage.getItem('auth_token'),
 					user : {
-						email : 		$('#email').val(),
-						telephone : 	$('#telephone').val(),
-						name :			$('#name').val()			
+						name : 				$('input[name="name"]').val(),
+						email : 			$('input[name="email"]').val(),
+						telephone : 	$('input[name="telephone"]').val()
 					}
 				}
 			}).success(function jsSuccess(data, textStatus, jqXHR){
-				alert("Conta actualizada com êxito");
+				console.log(data);
+				console.log(textStatus);
+				console.log(jqXHR);
 				$.mobile.hidePageLoadingMsg();
 				$.mobile.changePage('settings.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);
+				$.mobile.hidePageLoadingMsg();
+				alert(errorThrown);
 			});	
 		});
 	</script>

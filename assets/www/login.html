@@ -42,11 +42,11 @@
 			</a>
 		</form>
 	</div>
-	
+
 	<div data-role="footer" class="p-footer">
 		<h1>&#192; l&#225; carte</h1>
 	</div>
-	
+
 	<script type="text/javascript">
 		$('#login_button').click(function(){
 			$.mobile.showPageLoadingMsg();
@@ -74,6 +74,8 @@
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);
+				$.mobile.hidePageLoadingMsg();
+				alert(errorThrown);
 			});
 		});
 	</script>

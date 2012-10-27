@@ -20,26 +20,24 @@
 			</span>
 		</a>
 		</div>
-		<div data-role="content">	
-			
-		</div>
-			
+
+		<div data-role="content" class="p-content"></div>
+
 		<div data-role="footer" data-id="navbar" class="p-footer"> 
 			<div data-role="navbar">
 				<ul>
 					<li><a href="restaurant_list.html">Restaurantes</a></li>
 					<li><a href="meal_list.html">Refei&#231;&#245;es</a></li>
 					<li><a href="reservations.html">Reservas</a></li>
-					<li><a href="settings.html" ref="external">Defini&#231;&#245;es</a></li>
+					<li><a href="settings.html">Defini&#231;&#245;es</a></li>
 				</ul>
 			</div>
 		</div>
 		<script type="text/javascript">
-		$(document).ready(function(){
-			$('.p-back-link').attr('href', localStorage.getItem('rootPage'));
-		});	
+			$(document).ready(function(){
+				$('.p-back-link').attr('href', localStorage.getItem('rootPage'));
+			});
 		</script>
 	</div>
-	
 </body>
 </html>

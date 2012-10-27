@@ -1,10 +1,9 @@
 $('[data-role=page]').live('pageshow', function (event, ui) {
-	
-	//alert("OLA")
+
 	$.mobile.showPageLoadingMsg();
-	
+
 	var restaurant_id = getURLParameter('res_id');
-	
+
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
@@ -23,29 +22,32 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 });
 
 function getURLParameter(name) {
-    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+	return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 }
 
 
 
 function writeMeals(data){
-	
+
 	var weekdays_names = ["Domingo", "Segunda-feira", "Ter&#231;a-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "S&#225;bado"];
 	var content = '<ul data-role="listview" data-autodividers="true" class="ui-listview">';	
 	var curr_day = "";
 	var meal_count = 0;
-	
+
 	$.each(data, function(i, rest){
 		meal_count ++;
-		
+
 		var places_left = rest['max_reservations'] - rest['cur_reservations'];
 
 		var name = rest['name'];
-		
+
 		var img = rest['image'];
-		
+
 		if(img == null){
 			img = "images/default_restaurant.gif";
+		}
+		else{
+			img = "https://rails-alacarte-server.herokuapp.com/assets/" + img
 		}
 
 		var price = rest['price'];
