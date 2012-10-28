@@ -37,6 +37,17 @@
 .restaurant_info_map {
 	padding-top: 10px;
 }
+.meal_info_img {
+	padding-top: 5%;
+	text-align: center;
+	padding-right:2.5%;
+	overflow:hidden;
+}
+.meal_info_details {
+	padding-top: 7px;
+	font-size: 12px;
+	text-align: center;
+}
 .ui-li-map {
 }
 .restaurant_info_meals {
