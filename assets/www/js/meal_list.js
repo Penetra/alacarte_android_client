@@ -22,7 +22,7 @@ $('#meal-list').live('pageshow', function (event, ui) {
 function writeMeals(data){
 
 	var weekdays_names = ["Domingo", "Segunda-feira", "Ter&#231;a-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "S&#225;bado"];
-	var content = '<ul data-role="listview" data-autodividers="true" class="ui-listview">';	
+	var content = '<ul data-role="listview" data-autodividers="true" class="ui-listview">';
 	var curr_day = "";
 	var meal_count = 0;
 
@@ -39,7 +39,7 @@ function writeMeals(data){
 			img = "images/default_restaurant.gif";
 		}
 		else{
-			img = "https://rails-alacarte-server.herokuapp.com/assets/" + img
+			img = "https://rails-alacarte-server.herokuapp.com/assets/" + img;
 		}
 
 		var price = rest['price'];
@@ -68,7 +68,7 @@ function writeMeals(data){
 	content = content + '</ul>';
 
 	if(meal_count == 0){
-		content = content + 'Restaurante sem refei&#231;&otilde;es dispon&#237;veis';
+		content = content + '<h3>Restaurante sem refei&#231;&otilde;es dispon&#237;veis</h3>';
 	}
 
 	$.mobile.hidePageLoadingMsg();
