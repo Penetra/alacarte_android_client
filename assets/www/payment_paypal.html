@@ -11,7 +11,8 @@
 </head>
 <body>
 	<div data-role="page" id="payment_paypal">
-
+		<script type="text/javascript" charset="utf-8" src="js/LocalNotification.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/alarm.js"></script>
 		<div data-role="header">
 			<h1>Pagamento por PayPal</h1>
 		</div>
@@ -70,6 +71,8 @@
 					console.log(textStatus);
 					console.log(jqXHR);
 					localStorage.setItem("credits", data.user.credits);
+					// Create alarm needs to pass chosen data
+					createAlarm(data.date, data.time_slot, data.name, data.restaurant_name);
 					$.mobile.changePage('home.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
 					$.mobile.hidePageLoadingMsg();
