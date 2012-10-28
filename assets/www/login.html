@@ -71,10 +71,8 @@
 				$.mobile.changePage('home.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
 				$.mobile.hidePageLoadingMsg();
-				console.log(jqXHR);
-				console.log(textStatus);
-				console.log(errorThrown);
-				alert(errorThrown);
+				var error = JSON.parse(jqXHR.responseText);
+				alert(error.message);
 			});
 		});
 	</script>

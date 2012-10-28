@@ -83,10 +83,10 @@
 						$.mobile.changePage('home.html', 'slideUp');
 					}).error(function jsError(jqXHR, textStatus, errorThrown){
 						$.mobile.hidePageLoadingMsg();
-						alert("Erro ao marcar a reserva, por favor tente novamente");
-						console.log(jqXHR);
-						console.log(textStatus);
-						console.log(errorThrown);
+						var errors = JSON.parse(jqXHR.responseText);
+						$.each(errors, function(key, value) {
+							alert(value);
+						});
 						$.mobile.changePage('home.html', 'slideUp');
 					});
 				}

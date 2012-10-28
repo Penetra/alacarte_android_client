@@ -12,7 +12,7 @@
 
 <div data-role="page" id="registration">
 	<div data-role="header">
-		<h1>Registo</h1>
+		<h1>Criar conta</h1>
 		<a href="welcome.html" data-transition="slide" data-direction="reverse" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text">Back</span>
@@ -40,7 +40,7 @@
 			</p>
 			<a href="#" id="registration_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
-					<span class="ui-btn-text">Registar</span>
+					<span class="ui-btn-text">Confirmar</span>
 				</span>
 			</a>
 		</form>
@@ -72,21 +72,21 @@
 					}
 				}
 			}).success(function jsSuccess(data, textStatus, jqXHR){
+				$.mobile.hidePageLoadingMsg();
 				console.log(data);
 				console.log(textStatus);
 				console.log(jqXHR);
-				$.mobile.hidePageLoadingMsg();
 				localStorage.setItem('auth_token', data.authentication_token);
 				localStorage.setItem('username', data.name);
 				localStorage.setItem('credits', data.credits);
 				localStorage.setItem("rootPage", "home.html");
 				$.mobile.changePage('home.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){
-				console.log(jqXHR);
-				console.log(textStatus);
-				console.log(errorThrown);
 				$.mobile.hidePageLoadingMsg();
-				alert(errorThrown);
+				var errors = JSON.parse(jqXHR.responseText);
+				$.each(errors, function(key, value) {
+					alert(key+" "+value);
+				});
 			});
 		});
 	</script>
