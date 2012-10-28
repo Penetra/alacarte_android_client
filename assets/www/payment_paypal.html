@@ -32,12 +32,13 @@
 			</a>
 		</div>
 			
-		<div data-role="footer" data-id="navbar" data-position="fixed"> 
+		<div data-role="footer" data-id="navbar" class="p-footer"> 
 			<div data-role="navbar">
 				<ul>
 					<li><a href="restaurant_list.html">Restaurantes</a></li>
+					<li><a href="meal_list.html">Refei&#231;&#245;es</a></li>
 					<li><a href="reservations.html">Reservas</a></li>
-					<li><a href="settings.html" rel="external">Defini&#231;&#245;es</a></li>
+					<li><a href="settings.html">Defini&#231;&#245;es</a></li>
 				</ul>
 			</div>
 		</div>
@@ -53,24 +54,23 @@
 			var menu_item_id = getURLParameter("meal_id");
 			var slot = getURLParameter("hour") + getURLParameter("minute");
 			
-			alert(slot);
-			
 			$.ajax({
 			       type : 'POST',
 			       dataType : 'json',
 			       url : 'https://rails-alacarte-server.herokuapp.com/reservations.json',
 			       data : {
-			               auth_token : '4gysLhooEVeTBnJ7Kyjz',
+			               auth_token : localStorage.getItem('auth_token'),
 			               reservation : {
-			                       menu_item_id : '2',
-			                       time_slot : '1200'
+			                       menu_item_id : menu_item_id,
+			                       time_slot : slot
 			               }
 			       }
 			}).success(function jsSuccess(data, textStatus, jqXHR){
 					console.log(data);
 			       	console.log(textStatus);
 			       	console.log(jqXHR);
-					alert('Reserva efectuada');
+					console.log('Reserva efectuada');
+					localStorage.setItem("credits", data.user.credits);
 					$.mobile.hidePageLoadingMsg();
 					$.mobile.changePage('home.html', 'slideUp');
 			}).error(function jsError(jqXHR, textStatus, errorThrown){

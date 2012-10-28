@@ -1,4 +1,4 @@
-$('[data-role=page]').live('pageshow', function (event, ui) {
+$('.meal-list').live('pageshow', function (event, ui) {
 
 	$.mobile.showPageLoadingMsg();
 

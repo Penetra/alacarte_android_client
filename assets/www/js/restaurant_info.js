@@ -1,4 +1,4 @@
-$('[data-role=page]').live('pageshow', function (event, ui) {
+$('.restaurant-info').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
 	
 	var current_restaurant = JSON.parse(localStorage.getItem('current_restaurant'));

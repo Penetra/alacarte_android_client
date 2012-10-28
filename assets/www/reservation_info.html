@@ -9,11 +9,12 @@
 	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
 </head>
 <body>
-	<div data-role="page" class="p-meal-info">
-		<script type="text/javascript" charset="utf-8" src="js/restaurant_meal_info.js"></script>
-		<div data-role="header" class="p-rest-meal-header" role="banner">
+	<div data-role="page" class="p-reservation-info">
+		<script type="text/javascript" charset="utf-8" src="js/jquery.qrcode-0.2.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/reservation_info.js"></script>
+		<div data-role="header" class="p-res-info-header" role="banner">
 			<h1></h1>
-			<a href="" id="p-restaurant-meal-info-link" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+			<a href="reservations.html" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
 					<span class="ui-btn-text">Back</span>
 					<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
@@ -24,6 +25,8 @@
 		<div data-role="content">
 		
 		</div>
+
+		<div id="qrcode" class="p-qrcode"></div>
 			
 		<div data-role="footer" data-id="navbar" class="p-footer"> 
 			<div data-role="navbar">
