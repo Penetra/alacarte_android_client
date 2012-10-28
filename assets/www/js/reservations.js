@@ -9,6 +9,7 @@ $('.reservation-list').live('pageshow', function (event, ui) {
 		}
 	}).success(function jsSuccess(data, textStatus, jqXHR){
 		console.log("Successfully got reservations list");
+		localStorage.setItem('reservations', JSON.stringify(data));
 		writeReservations(data);
 		console.log(textStatus);
 		console.log(jqXHR);

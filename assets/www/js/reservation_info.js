@@ -1,12 +1,14 @@
+var reservation_id = -1;
+
 $('.p-reservation-info').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
 	
-	var id = getURLParameter('id');
+	reservation_id = getURLParameter('id');
 
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
-		url : 'https://rails-alacarte-server.herokuapp.com/reservations/' + id + '.json',
+		url : 'https://rails-alacarte-server.herokuapp.com/reservations/' + reservation_id + '.json',
 		data : {
 			auth_token : localStorage.getItem('auth_token')
 		}
@@ -60,8 +62,39 @@ function writeReservationInfo(data){
 		height: 100,
 		text: date + '_' + id + '_' + localStorage.getItem('username')
 	});
-
 	
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);
 }
+
+$('.p-send-reservation').live('click', function() {
+
+	var reservations = JSON.parse(localStorage.getItem('reservations'));
+	var reservation = null;
+	$.each(reservations, function(i, res) {
+		if(reservation_id == res.id){
+			reservation = res;
+		}
+	});
+
+	$.ajax({
+		type : 'POST',
+		dataType : 'json',
+		url : 'https://rails-alacarte-server.herokuapp.com/send_local_reservation.json',
+		data : {
+			auth_token : localStorage.getItem('auth_token'),
+			reservation : reservation
+		}
+	}).success(function jsSuccess(data, textStatus, jqXHR){
+		alert('Reserva enviada com sucesso.');
+		console.log("Successfully got sent reservation info");
+		console.log(textStatus);
+		console.log(jqXHR);
+	}).error(function jsError(jqXHR, textStatus, errorThrown){
+		alert('Ocorreu um erro ao enviar a reserva, por favor tente mais tarde.');
+		console.log('error while sending reservation info');
+		console.log(jqXHR);
+		console.log(textStatus);
+		console.log(errorThrown);
+	});
+});

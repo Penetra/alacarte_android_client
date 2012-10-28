@@ -48,11 +48,11 @@ function writeMealInfo(id){
 	
 	content += '<div class="options_buttons" data-role="controlgroup" class="ui-controlgroup-controls"><div class="ui-controlgroup-controls"><a href="#" data-role="button" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c" ><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Mais informa&#231;&otilde;es</span></span></a><a href="make_reservation.html?meal_id='+id+'" data-role="button" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c" rel="external"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Efectuar reserva</span></span></a></div></div>';
 	
-	content += '<div class="meal_info_details"><p>&#8364;'+price+'; '+available_food+' por&#231;&otilde;es restantes no dia '+date+'.</p></div>';
+	content += '<div class="meal_info_details"><p>'+price+'cr&#233;ditos (' + available_food + ' por&#231;&otilde;es restantes no dia '+date+').</p></div>';
 			
 	/* Padding 5% on each side*/
 	var maxWidth = window.innerWidth * 0.9;
-	
+	 ('+meals_left+' pratos dispon&#237;veis)</p>'
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);
 }
