@@ -86,7 +86,7 @@ $('.p-send-reservation').live('click', function() {
 			reservation : reservation
 		}
 	}).success(function jsSuccess(data, textStatus, jqXHR){
-		alert('Reserva enviada com sucesso.');
+		alert('Reserva enviada para o email com sucesso.');
 		console.log("Successfully got sent reservation info");
 		console.log(textStatus);
 		console.log(jqXHR);

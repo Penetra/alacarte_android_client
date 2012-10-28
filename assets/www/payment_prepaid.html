@@ -80,7 +80,7 @@
 						$.mobile.changePage('home.html', 'slideUp');
 					}).error(function jsError(jqXHR, textStatus, errorThrown){
 						$.mobile.hidePageLoadingMsg();
-						console.log("Erro ao marcar a reserva, por favor tente novamente");
+						alert("Erro ao marcar a reserva, por favor tente novamente");
 						console.log(jqXHR);
 						console.log(textStatus);
 						console.log(errorThrown);
