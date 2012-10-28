@@ -12,13 +12,8 @@
 
 <div data-role="page" id="make_reservation">
 	<div data-role="header" class="ui-header" role="banner">
-<<<<<<< HEAD
-		<h1>Iniciar Sess&atilde;o</h1>
-		<a href="#null" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
-=======
 		<h1>Efectuar Reserva</h1>
 		<a href="" id="p-back-link" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
->>>>>>> 3d551b4b122300689a633a1ea0ead54145754f59
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text">Back</span>
 				<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
@@ -42,11 +37,7 @@
 			<span class="ui-btn-text">Continuar</span>
 		</span>
 	</a>
-<<<<<<< HEAD
 
-	<div data-role="footer"></div>
-=======
-	
 	<div data-role="footer" data-id="navbar" class="p-footer"> 
 		<div data-role="navbar">
 			<ul>
@@ -57,7 +48,6 @@
 			</ul>
 		</div>
 	</div>
->>>>>>> 3d551b4b122300689a633a1ea0ead54145754f59
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -81,11 +71,6 @@
 			var time_slot = $('#time_slot option:selected').val();
 			var payment_method = $('#payment_method option:selected').val();
 			var meal_id = getURLParameter('meal_id');
-<<<<<<< HEAD
-
-=======
-			
->>>>>>> 3d551b4b122300689a633a1ea0ead54145754f59
 			if(payment_method == "1"){
 				$.mobile.changePage('payment_prepaid.html?time_slot='+time_slot+'&meal_id='+meal_id);
 			}
