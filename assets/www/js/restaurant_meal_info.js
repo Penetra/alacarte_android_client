@@ -36,6 +36,8 @@ function writeMealInfo(id){
 	}
 	
 	var price = data['price'];
+
+	alert(price);
 	
 	if(price == null){
 		price = "No price available";
