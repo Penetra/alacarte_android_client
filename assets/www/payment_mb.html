@@ -72,17 +72,15 @@
 		
 		<script type="text/javascript">
 		function getURLParameter(name) {
-		    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+			return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 		}
-		
+
 		$('#confirm_button').click(function(){
 			$.mobile.showPageLoadingMsg();
-			
+
 			var menu_item_id = getURLParameter("meal_id");
-			var slot = getURLParameter("hour") + getURLParameter("minute");
-			
-			alert(slot);
-			
+			var slot = getURLParameter("time_slot");
+
 			$.ajax({
 				type : 'POST',
 				dataType : 'json',
@@ -90,7 +88,7 @@
 				data : {
 					auth_token : localStorage.getItem('auth_token'),
 					reservation : {
-						menu_item_id  : "6",		
+						menu_item_id  : "6",
 						time_slot 	  :	"1230"
 					}
 				}
@@ -108,7 +106,7 @@
 			});
 		});
 	</script>
-		
+
 	</div>
 </body>
 </html>

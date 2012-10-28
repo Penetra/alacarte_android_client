@@ -22,8 +22,8 @@ function writeMeals(data){
 		meal_count ++;
 
 		rest = rest.meal;
-		
-		var places_left = rest['max_reservations'] - rest['cur_reservations'];
+
+		var meals_left = rest['max_reservations'] - rest['cur_reservations'];
 
 		var name = rest['name'];
 
@@ -37,11 +37,11 @@ function writeMeals(data){
 		}
 
 		var price = rest['price'];
-		
+
 		var id = rest['id'];
-		
+
 		var date = rest['date'];
-		
+
 		if(date != curr_day){
 			//Adicionar novo divisor
 			var date_aux = new Date(date);
@@ -55,17 +55,16 @@ function writeMeals(data){
 		+ '<a href="restaurant_meal_info.html?id=' + id + '" rel="external" class="ui-link-inherit">'
 		+ '<img src="' + img + '" class="ui-li-image-thumb"/>'
 		+ '<h3 class="ui-li-heading">' + name + '</h3>'
-		+ '<p class="ui-li-desc">&#8364;' + price + ' ('+places_left+' places left)</p>'
+		+ '<p class="ui-li-desc">' + price + ' cr&#233;ditos ('+meals_left+' pratos dispon&#237;veis)</p>'
 		+ '</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
 	});
 
 	content = content + '</ul>';
-	
+
 	if(meal_count == 0){
 		content = content + 'Restaurante sem refei&#231;&otilde;es dispon&#237;veis';
 	}
-	
+
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);
-
 }

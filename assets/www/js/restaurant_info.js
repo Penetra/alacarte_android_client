@@ -28,7 +28,7 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 });
 
 function getURLParameter(name) {
-    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+	return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 }
 
 function writeRestaurant(data, id){

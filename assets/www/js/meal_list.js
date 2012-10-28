@@ -1,7 +1,6 @@
 $('#meal-list').live('pageshow', function (event, ui) {
 	$.mobile.showPageLoadingMsg();
 	$('#p-meal-list-link').attr('href', localStorage.getItem('rootPage'));
-	alert($('#p-meal-list-link').attr('href'));
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
@@ -12,7 +11,7 @@ $('#meal-list').live('pageshow', function (event, ui) {
 		console.log(textStatus);
 		console.log(jqXHR);
 	}).error(function jsError(jqXHR, textStatus, errorThrown){
-		console.log('error while getting meal list');
+		console.log('Error while getting meal list');
 		console.log(jqXHR);
 		console.log(textStatus);
 		console.log(errorThrown);
@@ -28,9 +27,9 @@ function writeMeals(data){
 	var meal_count = 0;
 
 	$.each(data, function(i, rest){
-		meal_count ++;
-		
-		var places_left = rest['max_reservations'] - rest['cur_reservations'];
+		meal_count++;
+
+		var meals_left = rest['max_reservations'] - rest['cur_reservations'];
 
 		var name = rest['name'];
 
@@ -44,11 +43,11 @@ function writeMeals(data){
 		}
 
 		var price = rest['price'];
-		
+
 		var id = rest['id'];
-		
+
 		var date = rest['date'];
-		
+
 		if(date != curr_day){
 			//Adicionar novo divisor
 			var date_aux = new Date(date);
@@ -62,17 +61,16 @@ function writeMeals(data){
 		+ '<a href="meal_info.html?id=' + id + '" rel="external" class="ui-link-inherit">'
 		+ '<img src="' + img + '" class="ui-li-image-thumb"/>'
 		+ '<h3 class="ui-li-heading">' + name + '</h3>'
-		+ '<p class="ui-li-desc">&#8364;' + price + ' ('+places_left+' places left)</p>'
+		+ '<p class="ui-li-desc">' + price + ' cr&#233;ditos ('+meals_left+' pratos dispon&#237;veis)</p>'
 		+ '</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
 	});
 
 	content = content + '</ul>';
-	
+
 	if(meal_count == 0){
 		content = content + 'Restaurante sem refei&#231;&otilde;es dispon&#237;veis';
 	}
-	
+
 	$.mobile.hidePageLoadingMsg();
 	$("[data-role=content]").html(content);
-
 }

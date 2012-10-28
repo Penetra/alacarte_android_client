@@ -6,14 +6,13 @@
 	<script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
-	<!-- <script type="text/javascript" charset="utf-8" src="js/footer.js"></script> -->
 </head>
 <body>
 
 <div data-role="page" id="make_reservation">
 	<div data-role="header" class="ui-header" role="banner">
-		<h1>Iniciar Sess&atildeo</h1>
-		<a href="#null" onclick="javascript:history.back();" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
+		<h1>Iniciar Sess&atilde;o</h1>
+		<a href="#null" data-role="button" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-iconpos="notext" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="back" class="ui-btn ui-btn-corner-all ui-btn-icon-notext ui-btn-up-a">
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text">Back</span>
 				<span class="ui-icon ui-icon-arrow-l">&nbsp;</span>
@@ -26,55 +25,62 @@
 			</span>
 		</a>
 	</div>
-	
-	<div id="date_payment_select">
-		<select name="slot_hour" id="select-choice-1">
-			<option value="12">12</option>
-			<option value="13">13</option>
+
+	<div>
+		<select id="time_slot">
 		</select>
-		
-		<select name="slot_minute" id = "select-choice-2">
-			<option value="00">00</option>
-			<option value="30">30</option>
-		</select>
-		<p></p>
-		<select name="payment_method" id = "select-choice-3">
-			<option value="1">Pre-paga</option>
+
+		<select id="payment_method">
+			<option value="1">Pr&#233;-paga</option>
 			<option value="2">Multibanco</option>
 			<option value="3">PayPal</option>
 		</select>
-		
 	</div>
-	
+
 	<a href="#" id="confirmation_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 		<span class="ui-btn-inner ui-btn-corner-all">
 			<span class="ui-btn-text">Continuar</span>
 		</span>
 	</a>
-	
+
 	<div data-role="footer"></div>
 
 	<script type="text/javascript">
-		$('#confirmation_button').click(function(){	
-			var slot_hour = $('#select-choice-1 option:selected').val();
-			var slot_minute = $('#select-choice-2 option:selected').val();
-			var payment_method = $('#select-choice-3 option:selected').val();
+		$(document).ready(function(){
+			var restaurant = localStorage.getItem('current_restaurant');
+			var opening_hours;
+			if (restaurant)
+				opening_hours = JSON.parse(restaurant)['opening_hours'].split(' ');
+			else
+				opening_hours = ['1200', '1230', '1300', '1330', '1400'];
+			var options = "";
+			$.each(opening_hours, function(i) {
+				options += '<option value="'+opening_hours[i]+'">'+opening_hours[i]+'</option>'; 
+			});
+			$('#time_slot').append(options);
+			$("#time_slot")[0].selectedIndex = 0; //should work but it doesn't
+			console.log(opening_hours);
+		});
+
+
+		$('#confirmation_button').click(function(){
+			var time_slot = $('#time_slot option:selected').val();
+			var payment_method = $('#payment_method option:selected').val();
 			var meal_id = getURLParameter('meal_id');
-			
-			alert(slot_hour);
+
 			if(payment_method == "1"){
-				$.mobile.changePage('payment_prepaid.html?hour='+slot_hour+'&minute='+slot_minute+'&meal_id='+meal_id);	
+				$.mobile.changePage('payment_prepaid.html?time_slot='+time_slot+'&meal_id='+meal_id);
 			}
 			else if(payment_method == "2"){
-				$.mobile.changePage('payment_mb.html?hour='+slot_hour+'&minute='+slot_minute+'&meal_id='+meal_id);	
+				$.mobile.changePage('payment_mb.html?time_slot='+time_slot+'&meal_id='+meal_id);
 			}
 			else{
-				$.mobile.changePage('payment_paypal.html?hour='+slot_hour+'&minute='+slot_minute+'&meal_id='+meal_id);	
+				$.mobile.changePage('payment_paypal.html?time_slot='+time_slot+'&meal_id='+meal_id);
 			}
 		});
-		
+
 		function getURLParameter(name) {
-		    return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+			return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 		}
 	</script>
 

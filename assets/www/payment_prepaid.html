@@ -13,15 +13,15 @@
 	<div data-role="page" id="payment_prepaid">
 		
 		<div data-role="header">
-			<h1>Refeicao Pre-paga</h1>
+			<h1>Refeicao Pr&#233;-paga</h1>
 		</div>
 		
 		<div data-role="content">
 			<div class="prepaid_img"><img src="images/credits.png" class="ui-li-image"/></div>
 			
-			Custo da refeicao: 
+			Custo da refei&#231;&#227;o: 
 				
-			Creditos disponiveis:
+			Creditos dispon&#237;veis:
 					
 			<a href="#" id="confirm_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
 				<span class="ui-btn-inner ui-btn-corner-all">
@@ -52,8 +52,7 @@
 			var cost_credits = localStorage.getItem('curr_meal_cost');
 			
 			var menu_item_id = getURLParameter("meal_id");
-			var slot = getURLParameter("hour") + getURLParameter("minute");
-			
+			var slot = getURLParameter("time_slot");
 			
 			if(curr_credits <= cost_credits){ //If enough credits, post reservation				
 				$.ajax({
@@ -63,8 +62,8 @@
 					data : {
 						auth_token : localStorage.getItem('auth_token'),
 						reservation : {
-							menu_item_id  : "6",		
-							time_slot 	  :	"1230"
+							menu_item_id : "6",
+							time_slot : "1230"
 						}
 					}
 				}).success(function jsSuccess(data, textStatus, jqXHR){
