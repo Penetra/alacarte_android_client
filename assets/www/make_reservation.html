@@ -21,7 +21,7 @@
 		</a>
 	</div>
 
-	<div>
+	<div class="p-padding">
 		<select id="time_slot">
 		</select>
 
@@ -30,13 +30,12 @@
 			<option value="2">Multibanco</option>
 			<option value="3">PayPal</option>
 		</select>
+		<a href="#" id="confirmation_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text">Continuar</span>
+			</span>
+		</a>
 	</div>
-
-	<a href="#" id="confirmation_button" data-role="button" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">
-		<span class="ui-btn-inner ui-btn-corner-all">
-			<span class="ui-btn-text">Continuar</span>
-		</span>
-	</a>
 
 	<div data-role="footer" data-id="navbar" class="p-footer"> 
 		<div data-role="navbar">
@@ -51,6 +50,16 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			var id = getURLParameter('meal_id');
+			
+			if(localStorage.getItem('current_restaurant') != null){
+				$('#p-back-link').attr('href', 'restaurant_meal_info.html?id=' + id);
+			}
+			else{
+				$('#p-back-link').attr('href', 'meal_info.html?id=' + id);
+			}
+			
 			var restaurant = localStorage.getItem('current_restaurant');
 			var opening_hours;
 			if (restaurant)
@@ -61,7 +70,7 @@
 			$.each(opening_hours, function(i) {
 				options += '<option value="'+opening_hours[i]+'">'+opening_hours[i]+'</option>'; 
 			});
-			$('#time_slot').append(options);
+			$('#time_slot').html(options);
 			$("#time_slot")[0].selectedIndex = 0; //should work but it doesn't
 			console.log(opening_hours);
 		});

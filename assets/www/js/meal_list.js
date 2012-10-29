@@ -8,6 +8,7 @@ $('#meal-list').live('pageshow', function (event, ui) {
 	}).success(function jsSuccess(data, textStatus, jqXHR){
 		console.log("Successfully got meal list");
 		writeMeals(data);
+		localStorage.removeItem('current_restaurant');
 		console.log(textStatus);
 		console.log(jqXHR);
 	}).error(function jsError(jqXHR, textStatus, errorThrown){

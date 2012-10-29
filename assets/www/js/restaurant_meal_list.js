@@ -62,7 +62,7 @@ function writeMeals(data){
 	content = content + '</ul>';
 
 	if(meal_count == 0){
-		content = content + 'Restaurante sem refei&#231;&otilde;es dispon&#237;veis';
+		content = content + '<h3>Restaurante sem refei&#231;&otilde;es dispon&#237;veis</h3>';
 	}
 
 	$.mobile.hidePageLoadingMsg();
