@@ -60,26 +60,43 @@
 				$('#p-back-link').attr('href', 'meal_info.html?id=' + id);
 			}
 			
-			var restaurant = localStorage.getItem('current_restaurant');
-			var opening_hours;
-			if (restaurant)
-				opening_hours = JSON.parse(restaurant)['opening_hours'].split(' ');
-			else
-				opening_hours = ['1200', '1230', '1300', '1330', '1400'];
-			var options = "";
-			$.each(opening_hours, function(i) {
-				options += '<option value="'+opening_hours[i]+'">'+opening_hours[i]+'</option>'; 
-			});
-			$('#time_slot').html(options);
-			$("#time_slot")[0].selectedIndex = 0; //should work but it doesn't
-			console.log(opening_hours);
-		});
+			var meal = JSON.parse(localStorage.getItem('current_meal'));
+			var restaurant = JSON.parse(localStorage.getItem('current_restaurant'));
 
+			$.ajax({
+				type : 'GET',
+				dataType : 'json',
+				url : 'https://rails-alacarte-server.herokuapp.com/restaurants/' + restaurant['id'] + '/availability.json',
+				data : { date : meal['date'] }
+			}).success(function jsSuccess(data, textStatus, jqXHR){
+				var availability = data['availability'];
+				var max_seats = restaurant['max_seats'];
+				console.log(JSON.stringify(availability));
+				console.log(JSON.stringify(restaurant));
+
+				var opening_hours = restaurant['opening_hours'].split(' ');
+				var options = "";
+				opening_hours.forEach( function(hour) {
+					options += '<option value="'+hour+'">'+hour+'H - '+ (max_seats - availability[hour]) +' lugares dispon&#237;veis</option>'; 
+				});
+
+				$('#time_slot').append(options);
+				$("#time_slot")[0].selectedIndex = 0; //should work but it doesn't
+				console.log(opening_hours);
+
+			}).error(function jsError(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+				alert(errorThrown);
+			});
+		});
 
 		$('#confirmation_button').click(function(){
 			var time_slot = $('#time_slot option:selected').val();
 			var payment_method = $('#payment_method option:selected').val();
-			var meal_id = getURLParameter('meal_id');
+			var meal_id = JSON.parse(localStorage.getItem('current_meal'))['id'];
+
 			if(payment_method == "1"){
 				$.mobile.changePage('payment_prepaid.html?time_slot='+time_slot+'&meal_id='+meal_id);
 			}
@@ -95,7 +112,6 @@
 			return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 		}
 	</script>
-
 </div>
 
 </body>

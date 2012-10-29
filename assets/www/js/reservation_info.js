@@ -56,6 +56,7 @@ function writeReservationInfo(data){
 	var content = '<div class="restaurant_info_img"><img src="' + img + '" class="ui-li-image"/></div>' + '<div class="meal_info"><p>Pre&#231;o: ' + price + '</p></div>'
 					+ '<div class="date"><p>Data: ' + date + '</p></div>';
 
+	$('#qrcode').html('');
 
 	$('#qrcode').qrcode({
 		width: 200,
