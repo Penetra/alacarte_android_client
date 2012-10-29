@@ -59,7 +59,7 @@
 
 	<script type="text/javascript">
 		$('#logout_button').click(function(){
-			/*$.mobile.showPageLoadingMsg();
+			$.mobile.showPageLoadingMsg();
 			$.ajax({
 				type : 'DELETE',
 				dataType : 'json',
@@ -81,7 +81,7 @@
 				console.log(textStatus);
 				console.log(errorThrown);
 				alert(errorThrown);
-			});*/
+			});
 			localStorage.clear();
 			localStorage.setItem("rootPage", "welcome.html");
 			$.mobile.changePage('welcome.html', 'slideUp');
